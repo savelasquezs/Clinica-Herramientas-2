@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace Clinica_Herramientas_2.Domain.Model
 {
-    class Contact:Person
+    internal class Enums
     {
-        private string relationship;
-
-        public string Relationship { get => relationship; set => relationship = value; }
+    
     }
 }
