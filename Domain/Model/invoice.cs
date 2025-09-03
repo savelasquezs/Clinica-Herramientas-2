@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace Clinica_Herramientas_2.Domain.Model
 {
-    internal class Enums
+    internal class invoice
     {
-    
+        private int invoiceNumber;
+        private Patient patient;
+        private User doctor;
+        private DateTime invoiceDate;
     }
 }
