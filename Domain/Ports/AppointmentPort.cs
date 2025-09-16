@@ -1,4 +1,5 @@
 ﻿using Clinica_Herramientas_2.Domain.Model;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Clinica_Herramientas_2.Domain.Ports
 {
-    interface PatientPort
+    internal interface AppointmentPort
     {
-        public Patient FindByDocument(Patient patient);
-        public void Save(Patient patient);
-        public void Update(Patient patient);
+
+        public void SaveAppointment(Appointment appointment);
+
     }
 }
