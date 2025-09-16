@@ -22,6 +22,6 @@ namespace Clinica_Herramientas_2.Domain.Model
         public string Diagnosis { get => diagnosis; set => diagnosis = value; }
         internal Patient Patient { get => patient; set => patient = value; }
         internal User Doctor { get => doctor; set => doctor = value; }
-        internal Order Orders { get => orders; set => orders = value; }
+        internal Order Order { get => order; set => order = value; }
     }
 }
