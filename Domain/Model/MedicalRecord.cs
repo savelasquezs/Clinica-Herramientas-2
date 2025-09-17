@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace Clinica_Herramientas_2.Domain.Model
 {
-    internal class MedicalRecord
+    internal class MedicalRecord(DateTime date, Patient patient, User doctor, string consultationReason, string symptoms, string diagnosis, Order order)
     {
-        private DateTime date;
-        private Patient patient;
-        private User doctor;
-        private string consultationReason;
-        private string symptoms;
-        private string diagnosis;
-        private Order order;
+        private DateTime date = date;
+        private Patient patient = patient;
+        private User doctor = doctor;
+        private string consultationReason = consultationReason;
+        private string symptoms = symptoms;
+        private string diagnosis = diagnosis;
+        private Order order = order;
 
         public DateTime Date { get => date; set => date = value; }
         public string ConsultationReason { get => consultationReason; set => consultationReason = value; }

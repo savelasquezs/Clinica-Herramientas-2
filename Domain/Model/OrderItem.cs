@@ -12,44 +12,113 @@ namespace Clinica_Herramientas_2.Domain.Model
         private int itemNumber;
         private decimal cost;
 
-        public int OrderNumber { get => orderNumber; set => orderNumber = value; }
-        public int ItemNumber { get => itemNumber; set => itemNumber = value; }
-        public decimal Cost { get => cost; set => cost = value; }
+        public OrderItem(int orderNumber, int itemNumber, decimal cost)
+        {
+            if (orderNumber <= 0)
+            {
+                throw new ArgumentException("OrderNumber debe ser mayor que cero.");
+            }
+            if (itemNumber <= 0)
+            {
+                throw new ArgumentException("ItemNumber debe ser mayor que cero.");
+            }
+            if (cost < 0)
+            {
+                throw new ArgumentException("Cost no puede ser negativo.");
+            }
+            this.orderNumber = orderNumber;
+            this.itemNumber = itemNumber;
+            this.cost = cost;
+        }
+
+        public int OrderNumber { get => orderNumber; private set => orderNumber = value; }
+        public int ItemNumber { get => itemNumber; private set => itemNumber = value; }
+        public decimal Cost { get => cost; private set => cost = value; }
     }
     class MedicationOrderItem : OrderItem
     {
-        private Medications medication;
+        private Medication medication;
         private string dose;
         private int treatmentDuration;
 
-        public Medications Medication { get => medication; set => medication = value; }
-        public string Dose { get => dose; set => dose = value; }
-        public int TreatmentDuration { get => treatmentDuration; set => treatmentDuration = value; }
+        public MedicationOrderItem(int orderNumber, int itemNumber, decimal cost, Medication medication, string dose, int treatmentDuration)
+            : base(orderNumber, itemNumber, cost)
+        {
+            ArgumentNullException.ThrowIfNull(medication);
+            Validations.MyStringValidator.ValidateStringLength(dose, nameof(Dose), max: 50, min: 1);
+            if (treatmentDuration <= 0)
+            {
+                throw new ArgumentException("TreatmentDuration debe ser mayor que cero.");
+            }
+            this.medication = medication;
+            this.dose = dose.Trim();
+            this.treatmentDuration = treatmentDuration;
+        }
+
+        public Medication Medication { get => medication; private set => medication = value; }
+        public string Dose { get => dose; private set => dose = value; }
+        public int TreatmentDuration { get => treatmentDuration; private set => treatmentDuration = value; }
     }
 
     class ProcedureOrderItem : OrderItem
     {
-        private Procedures procedure;
+        private Procedure procedure;
         private int frequency;
         private bool requiresSpecialist;
         private int? specialistTypeId;
 
-        public Procedures Procedure { get => procedure; set => procedure = value; }
-        public int Frequency { get => frequency; set => frequency = value; }
-        public bool RequiresSpecialist { get => requiresSpecialist; set => requiresSpecialist = value; }
-        public int? SpecialistTypeId { get => specialistTypeId; set => specialistTypeId = value; }
+        public ProcedureOrderItem(int orderNumber, int itemNumber, decimal cost, Procedure procedure, int frequency, bool requiresSpecialist, int? specialistTypeId)
+            : base(orderNumber, itemNumber, cost)
+        {
+         ArgumentNullException.ThrowIfNull(procedure);
+            if (frequency <= 0)
+            {
+                throw new ArgumentException("Frequency debe ser mayor que cero.");
+            }
+            if (!requiresSpecialist && specialistTypeId.HasValue)
+            {
+                throw new ArgumentException("SpecialistTypeId solo aplica cuando RequiresSpecialist es verdadero.");
+            }
+            this.procedure = procedure;
+            this.frequency = frequency;
+            this.requiresSpecialist = requiresSpecialist;
+            this.specialistTypeId = specialistTypeId;
+        }
+
+        public Procedure Procedure { get => procedure; private set => procedure = value; }
+        public int Frequency { get => frequency; private set => frequency = value; }
+        public bool RequiresSpecialist { get => requiresSpecialist; private set => requiresSpecialist = value; }
+        public int? SpecialistTypeId { get => specialistTypeId; private set => specialistTypeId = value; }
     }
 
     class DiagnosticAidOrderItem : OrderItem
     {
-        private DiagnosticsAid diagnosticAid;
+        private DiagnosticAid diagnosticAid;
         private int quantity;
         private bool requiresSpecialist;
         private int? specialistTypeId;
 
-        public DiagnosticsAid DiagnosticAid { get => diagnosticAid; set => diagnosticAid = value; }
-        public int Quantity { get => quantity; set => quantity = value; }
-        public bool RequiresSpecialist { get => requiresSpecialist; set => requiresSpecialist = value; }
-        public int? SpecialistTypeId { get => specialistTypeId; set => specialistTypeId = value; }
+        public DiagnosticAidOrderItem(int orderNumber, int itemNumber, decimal cost, DiagnosticAid diagnosticAid, int quantity, bool requiresSpecialist, int? specialistTypeId)
+            : base(orderNumber, itemNumber, cost)
+        {
+         ArgumentNullException.ThrowIfNull(diagnosticAid);
+            if (quantity <= 0)
+            {
+                throw new ArgumentException("Quantity debe ser mayor que cero.");
+            }
+            if (!requiresSpecialist && specialistTypeId.HasValue)
+            {
+                throw new ArgumentException("SpecialistTypeId solo aplica cuando RequiresSpecialist es verdadero.");
+            }
+            this.diagnosticAid = diagnosticAid;
+            this.quantity = quantity;
+            this.requiresSpecialist = requiresSpecialist;
+            this.specialistTypeId = specialistTypeId;
+        }
+
+        public DiagnosticAid DiagnosticAid { get => diagnosticAid; private set => diagnosticAid = value; }
+        public int Quantity { get => quantity; private set => quantity = value; }
+        public bool RequiresSpecialist { get => requiresSpecialist; private set => requiresSpecialist = value; }
+        public int? SpecialistTypeId { get => specialistTypeId; private set => specialistTypeId = value; }
     }
 }

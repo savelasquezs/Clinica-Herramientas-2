@@ -11,44 +11,98 @@ namespace Clinica_Herramientas_2.Domain.Model
         private int id;
         private string name;
         private decimal cost;
+        
+        public ClinicalResource(int id, string name, decimal cost)
+        {
+            if (id <= 0)
+            {
+                throw new ArgumentException("Id debe ser mayor que cero.");
+            }
+            Validations.MyStringValidator.ValidateStringLength(name, nameof(Name), max: 200, min: 1);
+            if (cost < 0)
+            {
+                throw new ArgumentException("Cost no puede ser negativo.");
+            }
+            this.id = id;
+            this.name = name.Trim();
+            this.cost = cost;
+        }
 
-        public int Id { get => id; set => id = value; }
-        public string Name { get => name; set => name = value; }
-        public decimal Cost { get => cost; set => cost = value; }
+        public int Id { get => id; private set => id = value; }
+        public string Name { get => name; private set => name = value; }
+        public decimal Cost { get => cost; private set => cost = value; }
     }
 
-    internal class Medications : ClinicalResource
+    internal class Medication : ClinicalResource
     {
-        private Medications medication;
         private string dose;
         private int treatmentDuration;
+        
+        public Medication(int id, string name, decimal cost, string defaultDose, int treatmentDurationDays)
+            : base(id, name, cost)
+        {
+            Validations.MyStringValidator.ValidateStringLength(defaultDose, nameof(Dose), max: 50, min: 1);
+            if (treatmentDurationDays <= 0)
+            {
+                throw new ArgumentException("TreatmentDuration debe ser mayor que cero.");
+            }
+            dose = defaultDose.Trim();
+            treatmentDuration = treatmentDurationDays;
+        }
 
-        public string Dose { get => dose; set => dose = value; }
-        public int TreatmentDuration { get => treatmentDuration; set => treatmentDuration = value; }
-        internal Medications Medication { get => medication; set => medication = value; }
+        public string Dose { get => dose; private set => dose = value; }
+        public int TreatmentDuration { get => treatmentDuration; private set => treatmentDuration = value; }
     }
-    internal class Procedures : ClinicalResource
+    internal class Procedure : ClinicalResource
     {
-        private Procedures procedure;
         private int frequency;
         private bool requiresSpecialist;
         private int? specialistTypeId;
+        
+        public Procedure(int id, string name, decimal cost, int frequency, bool requiresSpecialist, int? specialistTypeId)
+            : base(id, name, cost)
+        {
+            if (frequency <= 0)
+            {
+                throw new ArgumentException("Frequency debe ser mayor que cero.");
+            }
+            if (!requiresSpecialist && specialistTypeId.HasValue)
+            {
+                throw new ArgumentException("SpecialistTypeId solo aplica cuando RequiresSpecialist es verdadero.");
+            }
+            this.frequency = frequency;
+            this.requiresSpecialist = requiresSpecialist;
+            this.specialistTypeId = specialistTypeId;
+        }
 
-        public int Frequency { get => frequency; set => frequency = value; }
-        public bool RequiresSpecialist { get => requiresSpecialist; set => requiresSpecialist = value; }
-        public int? SpecialistTypeId { get => specialistTypeId; set => specialistTypeId = value; }
-        internal Procedures Procedure { get => procedure; set => procedure = value; }
+        public int Frequency { get => frequency; private set => frequency = value; }
+        public bool RequiresSpecialist { get => requiresSpecialist; private set => requiresSpecialist = value; }
+        public int? SpecialistTypeId { get => specialistTypeId; private set => specialistTypeId = value; }
     }
-    internal class DiagnosticsAid : ClinicalResource
+    internal class DiagnosticAid : ClinicalResource
     {
-        private DiagnosticsAid diagnosticAid;
         private int quantity;
         private bool requiresSpecialist;
         private int? specialistTypeId;
+        
+        public DiagnosticAid(int id, string name, decimal cost, int quantity, bool requiresSpecialist, int? specialistTypeId)
+            : base(id, name, cost)
+        {
+            if (quantity <= 0)
+            {
+                throw new ArgumentException("Quantity debe ser mayor que cero.");
+            }
+            if (!requiresSpecialist && specialistTypeId.HasValue)
+            {
+                throw new ArgumentException("SpecialistTypeId solo aplica cuando RequiresSpecialist es verdadero.");
+            }
+            this.quantity = quantity;
+            this.requiresSpecialist = requiresSpecialist;
+            this.specialistTypeId = specialistTypeId;
+        }
 
-        public int Quantity { get => quantity; set => quantity = value; }
-        public bool RequiresSpecialist { get => requiresSpecialist; set => requiresSpecialist = value; }
-        public int? SpecialistTypeId { get => specialistTypeId; set => specialistTypeId = value; }
-        internal DiagnosticsAid DiagnosticAid { get => diagnosticAid; set => diagnosticAid = value; }
+        public int Quantity { get => quantity; private set => quantity = value; }
+        public bool RequiresSpecialist { get => requiresSpecialist; private set => requiresSpecialist = value; }
+        public int? SpecialistTypeId { get => specialistTypeId; private set => specialistTypeId = value; }
     }
 }

@@ -1,16 +1,12 @@
 ﻿using Clinica_Herramientas_2.Domain.Ports;
 using Clinica_Herramientas_2.Domain.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Clinica_Herramientas_2.Domain.Services
 {
-    class CreatePatient
+    class CreatePatient(IPatientPort patientPort)
     {
-        private PatientPort patientPort;
+        private readonly IPatientPort patientPort = patientPort;
 
         public void Create(Patient patient)
         {

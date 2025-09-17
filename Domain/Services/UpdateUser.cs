@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Clinica_Herramientas_2.Domain.Services
 {
-    class UpdateUser
+    class UpdateUser(IUserPort userPort)
     {
-        private UserPort userPort;
+        private readonly IUserPort userPort= userPort;
 
         public void Update(User user)
         {

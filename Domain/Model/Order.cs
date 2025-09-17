@@ -7,19 +7,11 @@ using System.Threading.Tasks;
 namespace Clinica_Herramientas_2.Domain.Model
 {
   
-    internal class Order
+    internal class Order(int orderNumber, DateTime creationDate, List<OrderItem> items)
     {
-        private int orderNumber;
-        private DateTime creationDate;
-        private List<OrderItem> items;
-        
-       
-
-
-        public Order()
-        {
-            Items = new List<OrderItem>();
-        }
+        private int orderNumber = orderNumber;
+        private DateTime creationDate = creationDate;
+        private List<OrderItem> items = items;
 
         public int OrderNumber { get => orderNumber; set => orderNumber = value; }
         public DateTime CreationDate { get => creationDate; set => creationDate = value; }

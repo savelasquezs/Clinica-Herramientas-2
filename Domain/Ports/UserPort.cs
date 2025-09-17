@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Clinica_Herramientas_2.Domain.Ports
 {
-    interface UserPort
+    interface IUserPort
     {
 
         public User FindByDocument(User user);

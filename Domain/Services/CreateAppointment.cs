@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace Clinica_Herramientas_2.Domain.Services
 {
-    internal class CreateAppointment
+    internal class CreateAppointment(IAppointmentPort appointmentPort, IPatientPort patientPort)
     {
-        private AppointmentPort appointmentPort;
-        private PatientPort patientPort;
+        private readonly IAppointmentPort appointmentPort = appointmentPort;
+        private readonly IPatientPort patientPort = patientPort;
 
         public void Create(Appointment appointment, Patient patient)
         {
