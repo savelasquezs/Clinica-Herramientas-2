@@ -12,8 +12,12 @@ namespace Clinica_Herramientas_2.Domain.Services
     {
         private readonly IUserPort userPort=userPort;
 
-        public void Create(User user)
+        public void Create(User performingUser, User user)
         {
+            if (performingUser == null || performingUser.Role != Role.RRHH)
+            {
+                throw new Exception("Solo RRHH puede crear usuarios.");
+            }
             if(userPort.FindByUserName(user) != null)
             {
                 throw new Exception("Ya existe un usuario con este nombre de usuario");

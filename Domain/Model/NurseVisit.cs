@@ -10,12 +10,13 @@ namespace Clinica_Herramientas_2.Domain.Model
     internal class NurseVisit:PerformedProcedure
     {
         private User nurse;
+        private Patient patient;
         private VitalData vitalData;
         private List<AdministeredMedication> administeredMedications;
         private DateTime visitTime;
 
         public NurseVisit(OrderItem orderItem, string testsPerformed, string notes, DateTime performedAt,
-            User nurse, VitalData vitalData, List<AdministeredMedication> administeredMedications, DateTime visitTime)
+            User nurse, VitalData vitalData, List<AdministeredMedication> administeredMedications, DateTime visitTime, Patient patient)
             : base(orderItem, testsPerformed, notes, performedAt)
         {
             ArgumentNullException.ThrowIfNull(nurse);
@@ -27,6 +28,7 @@ namespace Clinica_Herramientas_2.Domain.Model
             MyDateValidator.ValidateDateNotInFuture(visitTime, nameof(VisitTime));
 
             this.nurse = nurse;
+            this.patient = patient;
             this.vitalData = vitalData;
             this.administeredMedications = administeredMedications ?? [];
             if (this.administeredMedications.Any(m => m == null))
@@ -34,9 +36,12 @@ namespace Clinica_Herramientas_2.Domain.Model
                 throw new ArgumentException("La lista de medicamentos administrados contiene elementos nulos.");
             }
             this.visitTime = visitTime;
+            this.OrderItem = orderItem; 
         }
 
         public DateTime VisitTime { get => visitTime; private set => visitTime = value; }
+        public OrderItem OrderItem { get; internal set; }
+        internal Patient Patient { get => patient; private set => patient = value; }
         internal User Nurse { get => nurse; private set => nurse = value; }
         internal VitalData VitalData { get => vitalData; private set => vitalData = value; }
         internal List<AdministeredMedication> AdministeredMedications { get => administeredMedications; private set => administeredMedications = value; }

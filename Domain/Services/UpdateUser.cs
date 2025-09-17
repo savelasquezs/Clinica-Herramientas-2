@@ -12,8 +12,12 @@ namespace Clinica_Herramientas_2.Domain.Services
     {
         private readonly IUserPort userPort= userPort;
 
-        public void Update(User user)
+        public void Update(User performingUser, User user)
         {
+            if (performingUser == null || performingUser.Role != Role.RRHH)
+            {
+                throw new Exception("Solo RRHH puede actualizar usuarios.");
+            }
             user = userPort.FindByDocument(user);
 
             if(user == null)

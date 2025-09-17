@@ -4,20 +4,21 @@ using Clinica_Herramientas_2.Domain.Model;
 
 namespace Clinica_Herramientas_2.Domain.Services
 {
-    class CreatePatient(IPatientPort patientPort)
+    class CreatePatient( IPatientPort patientPort)
     {
         private readonly IPatientPort patientPort = patientPort;
 
-        public void Create(Patient patient)
+        public void Create( User user, Patient patient)
         {
+            if (user.Role != Role.Admin)
+            {
+                throw new Exception("Solo el administrador puede crear pacientes");
+            }
             if (patientPort.FindByDocument(patient) != null)
             {
                 throw new Exception("El paciente ya existe");
             }
-            if (patient.EmergencyContact == null)
-            {
-                throw new Exception("El paciente debe tener un contacto de emergencia");
-            }
+               
             patientPort.Save(patient);
         }
     }

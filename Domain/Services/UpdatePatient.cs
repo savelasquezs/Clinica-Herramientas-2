@@ -12,17 +12,18 @@ namespace Clinica_Herramientas_2.Domain.Services
     {
         private readonly IPatientPort patientPort=patientPort;
 
-        public void Update(Patient patient)
+        public void Update(User user, Patient patient)
         {
             
+            if (user.Role != Role.Admin)
+            {
+                throw new Exception("Solo el administrador puede actualizar pacientes");
+            }
             if (patientPort.FindByDocument(patient) == null)
             {
                 throw new Exception("El paciente no existe");
             }
-            if(patient.EmergencyContact == null)
-            {
-                throw new Exception("El paciente debe tener un contacto de emergencia");
-            }
+            
             patientPort.Update(patient);
         }
     }

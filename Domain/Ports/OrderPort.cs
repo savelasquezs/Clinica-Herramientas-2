@@ -1,0 +1,17 @@
+using Clinica_Herramientas_2.Domain.Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Clinica_Herramientas_2.Domain.Ports
+{
+    internal interface IOrderPort
+    {
+        public Order FindByNumber(int orderNumber);
+        public bool ItemExists(int orderNumber, int itemNumber);
+        public void Save(Order order);
+    }
+}
+

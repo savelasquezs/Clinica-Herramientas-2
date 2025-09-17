@@ -9,6 +9,7 @@ namespace Clinica_Herramientas_2.Domain.Ports
 {
     interface IInvoicePort
     {
-
+        public Invoice FindByNumber(int invoiceNumber);
+        public void Save(Invoice invoice);
     }
 }

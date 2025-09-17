@@ -22,6 +22,12 @@ namespace Clinica_Herramientas_2.Domain.Services
             {
                 throw new Exception("El paciente no existe");
             }
+           
+            if (appointment.Date < DateTime.Now)
+            {
+                throw new Exception("La fecha de la cita no puede ser en el pasado");
+            }
+        
             appointmentPort.SaveAppointment(appointment);
         }
     }
