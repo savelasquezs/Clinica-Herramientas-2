@@ -16,11 +16,11 @@ namespace Clinica_Herramientas_2.Domain.Services
 
             // Validar Patient por documento
             ArgumentNullException.ThrowIfNull(nurseVisit.Patient);
-            _ = patientPort.FindByDocument(nurseVisit.Patient) ?? throw new Exception("El paciente no existe");
+            _ = patientPort.FindByDocument(nurseVisit.Patient.Dni) ?? throw new Exception("El paciente no existe");
 
             // Validar Nurse por documento y rol
             ArgumentNullException.ThrowIfNull(nurseVisit.Nurse);
-            var nurse = userPort.FindByDocument(nurseVisit.Nurse) ?? throw new Exception("La enfermera no existe");
+            var nurse = userPort.FindByDocument(nurseVisit.Nurse.Dni) ?? throw new Exception("La enfermera no existe");
             if (nurse.Role != Role.Nurse)
             {
                 throw new Exception("El usuario asignado no tiene rol de enfermera");

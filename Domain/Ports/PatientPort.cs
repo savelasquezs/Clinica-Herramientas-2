@@ -9,7 +9,7 @@ namespace Clinica_Herramientas_2.Domain.Ports
 {
     interface IPatientPort
     {
-        public Patient FindByDocument(Patient patient);
+        public Patient FindByDocument(string patientDni);
         public void Save(Patient patient);
         public void Update(Patient patient);
     }

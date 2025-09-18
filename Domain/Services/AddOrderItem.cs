@@ -19,11 +19,7 @@ namespace Clinica_Herramientas_2.Domain.Services
             ArgumentNullException.ThrowIfNull(dto);
 
             // Validar que la orden existe
-            var order = orderPort.FindByNumber(dto.OrderNumber);
-            if (order == null)
-            {
-                throw new Exception("La orden no existe.");
-            }
+            var order = orderPort.FindByNumber(dto.OrderNumber) ?? throw new Exception("La orden no existe.");
 
             // Crear el OrderItem usando el servicio existente
             var createOrderItemService = new CreateOrderItem(orderPort, inventoryPort);

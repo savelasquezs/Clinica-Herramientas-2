@@ -14,15 +14,9 @@ namespace Clinica_Herramientas_2.Domain.Services
         private readonly IAppointmentPort appointmentPort = appointmentPort;
         private readonly IPatientPort patientPort = patientPort;
 
-        public void Create(Appointment appointment, Patient patient)
+        public void Create(Appointment appointment, string patientDni)
         {
-            patient = patientPort.FindByDocument(patient);
-
-            if (patient == null)
-            {
-                throw new Exception("El paciente no existe");
-            }
-           
+            _ = patientPort.FindByDocument(patientDni) ?? throw new Exception("El paciente no existe");
             if (appointment.Date1 < DateTime.Now)
             {
                 throw new Exception("La fecha de la cita no puede ser en el pasado");

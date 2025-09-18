@@ -22,7 +22,7 @@ namespace Clinica_Herramientas_2.Domain.Services
             {
                 throw new Exception("Ya existe un usuario con este nombre de usuario");
             }
-            if(userPort.FindByDocument(user) != null)
+            if(userPort.FindByDocument(user.Dni) != null)
             {
                 throw new Exception("Ya existe un usuario con esta identificacion");
             }

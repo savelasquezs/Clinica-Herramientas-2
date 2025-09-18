@@ -14,7 +14,7 @@ namespace Clinica_Herramientas_2.Domain.Services
             {
                 throw new Exception("Solo el administrador puede crear pacientes");
             }
-            if (patientPort.FindByDocument(patient) != null)
+            if (patientPort.FindByDocument(patient.Dni) != null)
             {
                 throw new Exception("El paciente ya existe");
             }

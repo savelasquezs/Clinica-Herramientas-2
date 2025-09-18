@@ -18,7 +18,7 @@ namespace Clinica_Herramientas_2.Domain.Services
             {
                 throw new Exception("Solo RRHH puede eliminar usuarios.");
             }
-            user = userPort.FindByDocument(user);
+            user = userPort.FindByDocument(user.Dni);
 
             if (user == null)
             {

@@ -10,7 +10,7 @@ namespace Clinica_Herramientas_2.Domain.Ports
     interface IUserPort
     {
 
-        public User FindByDocument(User user);
+        public User FindByDocument(string userDni);
         public User FindByUserName(User user);
         public User FindByEmail(User user);
         public void Save(User user);

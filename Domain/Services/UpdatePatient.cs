@@ -19,7 +19,7 @@ namespace Clinica_Herramientas_2.Domain.Services
             {
                 throw new Exception("Solo el administrador puede actualizar pacientes");
             }
-            if (patientPort.FindByDocument(patient) == null)
+            if (patientPort.FindByDocument(patient.Dni) == null)
             {
                 throw new Exception("El paciente no existe");
             }
