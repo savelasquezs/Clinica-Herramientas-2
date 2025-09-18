@@ -8,7 +8,8 @@ namespace Clinica_Herramientas_2.Domain.Model
         Admin,
         Doctor,
         Nurse,
-        RRHH
+        RRHH,
+        Support
     }
     class User:Person
     {

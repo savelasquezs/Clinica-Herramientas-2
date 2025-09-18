@@ -16,6 +16,12 @@ namespace Clinica_Herramientas_2.Domain.Model
         public HealthInsurance Insurance { get => insurance; private set => insurance = value; }
         internal Gender Gender { get => gender; private set => gender = value; }
         internal EmergencyContact EmergencyContact { get => emergencyContact; private set => emergencyContact = value; }
+        public void UpdateBasicInfo(string email, string phone, string address)
+        {
+            SetEmail(email);
+            SetPhone(phone);
+            SetAddress(address);
+        }
     }
 
     class EmergencyContact

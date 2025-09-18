@@ -39,6 +39,7 @@ namespace Clinica_Herramientas_2.Domain.Services
 
             // Crear la factura
             var invoice = new Invoice(invoiceNumber, existingPatient, existingDoctor, invoiceDate, orders);
+            invoice.CalculateTotalAmount();
 
             // Calcular el copago acumulado anual
             var currentYear = invoiceDate.Year;

@@ -47,6 +47,26 @@ namespace Clinica_Herramientas_2.Domain.Model
         public string Phonenumber { get => phonenumber; private set => phonenumber = value; }
         public DateOnly Birthdate { get => birthdate; private set => birthdate = value; }
         public string Address { get => address; private set => address = value; }
+
+        internal void SetEmail(string email)
+        {
+            MyStringValidator.ValidateEmailConstruction(email, nameof(Email));
+            this.email = email.Trim();
+        }
+
+        internal void SetPhone(string phone)
+        {
+            MyStringValidator.ValidateStringIsNumeric(phone, nameof(Phonenumber));
+            MyStringValidator.ValidateStringLength(phone, nameof(Phonenumber), max: 10, min: 10);
+            this.phonenumber = phone.Trim();
+        }
+
+        internal void SetAddress(string address)
+        {
+            MyStringValidator.ValidateStringLength(address, nameof(Address), max: 30, min: 1);
+            this.address = address.Trim();
+        }
+
     }
 }
     

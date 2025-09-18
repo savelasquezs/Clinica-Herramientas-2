@@ -11,7 +11,8 @@ namespace Clinica_Herramientas_2.Domain.Services
     {
         public static BillingCalculationResult CalculateBilling(Patient patient, decimal totalAmount, decimal annualCopaymentAccumulated)
         {
-            if (patient.Insurance == null || !patient.Insurance.IsActive)
+            if (patient.Insurance == null || !patient.Insurance.IsActive ||
+    patient.Insurance.ExpirationDate < DateTime.Today)
             {
                 // Sin seguro: paciente paga todo
                 return new BillingCalculationResult
