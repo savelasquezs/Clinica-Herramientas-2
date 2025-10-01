@@ -1,6 +1,4 @@
-﻿using Clinica_Herramientas_2.Application.Adapters.Input.Validators;
-
-namespace Clinica_Herramientas_2.Domain.Model
+﻿namespace Clinica_Herramientas_2.Domain.Model
 {
 
     enum Role
@@ -21,20 +19,8 @@ namespace Clinica_Herramientas_2.Domain.Model
             Role role, string username, string password)
             : base(fullname, dni, email, phonenumber, birthdate, address)
         {
-            // Rol requerido
             this.role = role;
-
-            // Username: único (a nivel de repositorio), máx 15, alfanumérico
-            MyStringValidator.ValidateStringLength(username, nameof(Username), max: 15, min: 1);
-            MyStringValidator.ValidateStringIsAlphaNumeric(username, nameof(Username));
             this.username = username.Trim();
-
-            // Password: >=8, con mayúscula, número y carácter especial
-            MyStringValidator.ValidateStringLength(password, nameof(Password), max: null, min: 8);
-            if (!password.Any(char.IsUpper) || !password.Any(char.IsDigit) || password.All(char.IsLetterOrDigit))
-            {
-                throw new ArgumentException("La contraseña debe incluir una mayúscula, un número y un carácter especial.");
-            }
             this.password = password;
         }
 

@@ -1,6 +1,4 @@
-﻿using Clinica_Herramientas_2.Application.Adapters.Input.Validators;
-
-namespace Clinica_Herramientas_2.Domain.Model
+﻿namespace Clinica_Herramientas_2.Domain.Model
 {
     internal class Invoice
     {
@@ -16,17 +14,12 @@ namespace Clinica_Herramientas_2.Domain.Model
 
         public Invoice(int invoiceNumber, Patient patient, User doctor, DateTime invoiceDate, List<Order> orders)
         {
-            if (invoiceNumber <= 0)
-            {
-                throw new ArgumentException("InvoiceNumber debe ser mayor que cero.");
-            }
             ArgumentNullException.ThrowIfNull(patient);
             ArgumentNullException.ThrowIfNull(doctor);
             if (doctor.Role != Role.Doctor)
             {
                 throw new ArgumentException("El usuario asignado no tiene rol de médico.");
             }
-            MyDateValidator.ValidateDateNotInFuture(invoiceDate, nameof(invoiceDate));
             ArgumentNullException.ThrowIfNull(orders);
 
             this.invoiceNumber = invoiceNumber;

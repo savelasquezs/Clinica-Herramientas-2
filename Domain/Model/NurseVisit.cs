@@ -1,6 +1,4 @@
 ﻿
-using Clinica_Herramientas_2.Application.Adapters.Input.Validators;
-
 namespace Clinica_Herramientas_2.Domain.Model
 {
     internal class NurseVisit:PerformedProcedure
@@ -21,7 +19,6 @@ namespace Clinica_Herramientas_2.Domain.Model
                 throw new ArgumentException("El usuario asignado no tiene rol de enfermera.");
             }
             ArgumentNullException.ThrowIfNull(vitalData);
-            MyDateValidator.ValidateDateNotInFuture(visitTime, nameof(VisitTime));
 
             this.nurse = nurse;
             this.patient = patient;
@@ -51,34 +48,9 @@ namespace Clinica_Herramientas_2.Domain.Model
         
         public VitalData(string bloodPressure, double temperature, int pulse, int oxygenLevel)
         {
-            // Presión arterial en formato "SYS/DIA" con valores razonables
-            MyStringValidator.ValidateStringNotEmpty(bloodPressure, nameof(BloodPressure));
-            var parts = bloodPressure.Split('/');
-            if (parts.Length != 2 || !int.TryParse(parts[0], out var sys) || !int.TryParse(parts[1], out var dia) || sys < 50 || sys > 250 || dia < 30 || dia > 150)
-            {
-                throw new ArgumentException("BloodPressure debe tener formato SYS/DIA con valores válidos.");
-            }
             _bloodPressure = bloodPressure;
-
-            // Temperatura en °C (rango clínico común 30..45)
-            if (temperature < 30 || temperature > 45)
-            {
-                throw new ArgumentException("Temperature debe estar entre 30 y 45 °C.");
-            }
             _temperature = temperature;
-
-            // Pulso (30..220)
-            if (pulse < 30 || pulse > 220)
-            {
-                throw new ArgumentException("Pulse debe estar entre 30 y 220.");
-            }
             _pulse = pulse;
-
-            // Oxígeno (0..100)
-            if (oxygenLevel < 0 || oxygenLevel > 100)
-            {
-                throw new ArgumentException("OxygenLevel debe estar entre 0 y 100.");
-            }
             _oxygenLevel = oxygenLevel;
         }
 

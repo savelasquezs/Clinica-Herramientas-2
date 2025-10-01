@@ -1,6 +1,4 @@
-﻿using Clinica_Herramientas_2.Application.Adapters.Input.Validators;
-
-namespace Clinica_Herramientas_2.Domain.Model
+﻿namespace Clinica_Herramientas_2.Domain.Model
 {
     enum Gender
     {
@@ -33,12 +31,6 @@ namespace Clinica_Herramientas_2.Domain.Model
         
         public EmergencyContact(string firstname, string lastname, string relationship, string phoneNumber)
         {
-            MyStringValidator.ValidateStringLength(firstname, nameof(Firtname), max: 100, min: 1);
-            MyStringValidator.ValidateStringLength(lastname, nameof(Lastname), max: 100, min: 1);
-            MyStringValidator.ValidateStringLength(relationship, nameof(Relationship), max: 50, min: 1);
-            MyStringValidator.ValidateStringIsNumeric(phoneNumber, nameof(PhoneNumber));
-            MyStringValidator.ValidateStringLength(phoneNumber, nameof(PhoneNumber), max: 10, min: 10);
-
             this.firtname = firstname.Trim();
             this.lastname = lastname.Trim();
             this.relationship = relationship.Trim();
@@ -60,10 +52,6 @@ namespace Clinica_Herramientas_2.Domain.Model
         
         public HealthInsurance(string companyName, string policyNumber, bool isActive, DateTime expirationDate)
         {
-            MyStringValidator.ValidateStringLength(companyName, nameof(CompanyName), max: 100, min: 1);
-            MyStringValidator.ValidateStringLength(policyNumber, nameof(PolicyNumber), max: 50, min: 1);
-            MyDateValidator.ValidateDateNotInFuture(expirationDate, nameof(ExpirationDate));
-
             _companyName = companyName.Trim();
             _policyNumber = policyNumber.Trim();
             _isActive = isActive;

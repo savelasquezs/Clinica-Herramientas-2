@@ -1,5 +1,4 @@
-﻿using Clinica_Herramientas_2.Application.Adapters.Input.Validators;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,15 +14,6 @@ namespace Clinica_Herramientas_2.Domain.Model
         
         public ClinicalResource(int id, string name, decimal cost)
         {
-            if (id <= 0)
-            {
-                throw new ArgumentException("Id debe ser mayor que cero.");
-            }
-            MyStringValidator.ValidateStringLength(name, nameof(Name), max: 200, min: 1);
-            if (cost < 0)
-            {
-                throw new ArgumentException("Cost no puede ser negativo.");
-            }
             this.id = id;
             this.name = name.Trim();
             this.cost = cost;
@@ -42,11 +32,6 @@ namespace Clinica_Herramientas_2.Domain.Model
         public Medication(int id, string name, decimal cost, string defaultDose, int treatmentDurationDays)
             : base(id, name, cost)
         {
-            MyStringValidator.ValidateStringLength(defaultDose, nameof(Dose), max: 50, min: 1);
-            if (treatmentDurationDays <= 0)
-            {
-                throw new ArgumentException("TreatmentDuration debe ser mayor que cero.");
-            }
             dose = defaultDose.Trim();
             treatmentDuration = treatmentDurationDays;
         }
@@ -63,14 +48,6 @@ namespace Clinica_Herramientas_2.Domain.Model
         public Procedure(int id, string name, decimal cost, int frequency, bool requiresSpecialist, int? specialistTypeId)
             : base(id, name, cost)
         {
-            if (frequency <= 0)
-            {
-                throw new ArgumentException("Frequency debe ser mayor que cero.");
-            }
-            if (!requiresSpecialist && specialistTypeId.HasValue)
-            {
-                throw new ArgumentException("SpecialistTypeId solo aplica cuando RequiresSpecialist es verdadero.");
-            }
             this.frequency = frequency;
             this.requiresSpecialist = requiresSpecialist;
             this.specialistTypeId = specialistTypeId;
@@ -89,14 +66,6 @@ namespace Clinica_Herramientas_2.Domain.Model
         public DiagnosticAid(int id, string name, decimal cost, int quantity, bool requiresSpecialist, int? specialistTypeId)
             : base(id, name, cost)
         {
-            if (quantity <= 0)
-            {
-                throw new ArgumentException("Quantity debe ser mayor que cero.");
-            }
-            if (!requiresSpecialist && specialistTypeId.HasValue)
-            {
-                throw new ArgumentException("SpecialistTypeId solo aplica cuando RequiresSpecialist es verdadero.");
-            }
             this.quantity = quantity;
             this.requiresSpecialist = requiresSpecialist;
             this.specialistTypeId = specialistTypeId;

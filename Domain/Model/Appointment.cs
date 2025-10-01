@@ -1,6 +1,4 @@
-﻿using Clinica_Herramientas_2.Application.Adapters.Input.Validators;
-
-namespace Clinica_Herramientas_2.Domain.Model
+﻿namespace Clinica_Herramientas_2.Domain.Model
 {
     internal class Appointment
     {
@@ -10,12 +8,7 @@ namespace Clinica_Herramientas_2.Domain.Model
         
         public Appointment(int id, Patient patient, DateTime date)
         {
-            if (id <= 0)
-            {
-                throw new ArgumentException("Id debe ser mayor que cero.");
-            }
             ArgumentNullException.ThrowIfNull(patient);
-            MyDateValidator.ValidateDateNotInFuture(date, nameof(Date));
 
             Id = id;
             Patient = patient;

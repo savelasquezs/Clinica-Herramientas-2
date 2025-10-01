@@ -17,14 +17,6 @@ internal class Order
 
         public Order(int orderNumber, DateTime creationDate, List<OrderItem> items)
         {
-            if (orderNumber <= 0)
-            {
-                throw new ArgumentException("OrderNumber debe ser mayor que cero.");
-            }
-            if (creationDate > DateTime.Now)
-            {
-                throw new ArgumentException("CreationDate no puede ser futura.");
-            }
             if (items != null && items.Any(i => i == null))
             {
                 throw new ArgumentException("La lista de items contiene elementos nulos.");
@@ -47,10 +39,6 @@ internal class Order
             if (item.OrderNumber != this.orderNumber)
             {
                 throw new ArgumentException("El ítem no corresponde al número de esta orden.");
-            }
-            if (item.ItemNumber <= 0)
-            {
-                throw new ArgumentException("ItemNumber debe ser mayor que cero.");
             }
             this.items.Add(item);
         }

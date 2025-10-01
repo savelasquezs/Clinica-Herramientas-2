@@ -1,7 +1,5 @@
 ﻿
 
-using Clinica_Herramientas_2.Application.Adapters.Input.Validators;
-
 namespace Clinica_Herramientas_2.Domain.Model
 {
     internal class PatientCareRecord
@@ -14,15 +12,6 @@ namespace Clinica_Herramientas_2.Domain.Model
         public PatientCareRecord(OrderItem orderItem, string testsPerformed, string notes, DateTime performedAt)
         {
             ArgumentNullException.ThrowIfNull(orderItem);
-            if (!string.IsNullOrWhiteSpace(testsPerformed))
-            {
-                MyStringValidator.ValidateStringLength(testsPerformed, nameof(testsPerformed), max: 2000, min: 1);
-            }
-            if (!string.IsNullOrWhiteSpace(notes))
-            {
-                MyStringValidator.ValidateStringLength(notes, nameof(notes), max: 2000, min: 1);
-            }
-            MyDateValidator.ValidateDateNotInFuture(performedAt, nameof(performedAt));
 
             this.orderItem = orderItem;
             this.testsPerformed = testsPerformed;
@@ -41,8 +30,6 @@ namespace Clinica_Herramientas_2.Domain.Model
             : base(orderItem, testsPerformed, notes, performedAt)
         {
             ArgumentNullException.ThrowIfNull(medication);
-            MyStringValidator.ValidateStringLength(dose, nameof(Dose), max: 50, min: 1);
-            MyStringValidator.ValidateStringLength(administrationRoute, nameof(AdministrationRoute), max: 50, min: 1);
 
             this.medication = medication;
             this.dose = dose.Trim();
