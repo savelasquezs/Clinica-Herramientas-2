@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Clinica_Herramientas_2.Application.Adapters.Input.Validators;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,7 @@ namespace Clinica_Herramientas_2.Domain.Model
             {
                 throw new ArgumentException("Id debe ser mayor que cero.");
             }
-            Validations.MyStringValidator.ValidateStringLength(name, nameof(Name), max: 200, min: 1);
+            MyStringValidator.ValidateStringLength(name, nameof(Name), max: 200, min: 1);
             if (cost < 0)
             {
                 throw new ArgumentException("Cost no puede ser negativo.");
@@ -41,7 +42,7 @@ namespace Clinica_Herramientas_2.Domain.Model
         public Medication(int id, string name, decimal cost, string defaultDose, int treatmentDurationDays)
             : base(id, name, cost)
         {
-            Validations.MyStringValidator.ValidateStringLength(defaultDose, nameof(Dose), max: 50, min: 1);
+            MyStringValidator.ValidateStringLength(defaultDose, nameof(Dose), max: 50, min: 1);
             if (treatmentDurationDays <= 0)
             {
                 throw new ArgumentException("TreatmentDuration debe ser mayor que cero.");

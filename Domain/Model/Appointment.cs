@@ -1,4 +1,4 @@
-﻿using Clinica_Herramientas_2.Domain.Model.Validations;
+﻿using Clinica_Herramientas_2.Application.Adapters.Input.Validators;
 
 namespace Clinica_Herramientas_2.Domain.Model
 {

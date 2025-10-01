@@ -9,4 +9,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Application\Adapters\Input\Builders\" />
+  </ItemGroup>
+
 </Project>

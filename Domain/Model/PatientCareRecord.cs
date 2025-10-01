@@ -1,5 +1,7 @@
 ﻿
 
+using Clinica_Herramientas_2.Application.Adapters.Input.Validators;
+
 namespace Clinica_Herramientas_2.Domain.Model
 {
     internal class PatientCareRecord
@@ -14,13 +16,13 @@ namespace Clinica_Herramientas_2.Domain.Model
             ArgumentNullException.ThrowIfNull(orderItem);
             if (!string.IsNullOrWhiteSpace(testsPerformed))
             {
-                Validations.MyStringValidator.ValidateStringLength(testsPerformed, nameof(testsPerformed), max: 2000, min: 1);
+                MyStringValidator.ValidateStringLength(testsPerformed, nameof(testsPerformed), max: 2000, min: 1);
             }
             if (!string.IsNullOrWhiteSpace(notes))
             {
-                Validations.MyStringValidator.ValidateStringLength(notes, nameof(notes), max: 2000, min: 1);
+                MyStringValidator.ValidateStringLength(notes, nameof(notes), max: 2000, min: 1);
             }
-            Validations.MyDateValidator.ValidateDateNotInFuture(performedAt, nameof(performedAt));
+            MyDateValidator.ValidateDateNotInFuture(performedAt, nameof(performedAt));
 
             this.orderItem = orderItem;
             this.testsPerformed = testsPerformed;
@@ -39,8 +41,8 @@ namespace Clinica_Herramientas_2.Domain.Model
             : base(orderItem, testsPerformed, notes, performedAt)
         {
             ArgumentNullException.ThrowIfNull(medication);
-            Validations.MyStringValidator.ValidateStringLength(dose, nameof(Dose), max: 50, min: 1);
-            Validations.MyStringValidator.ValidateStringLength(administrationRoute, nameof(AdministrationRoute), max: 50, min: 1);
+            MyStringValidator.ValidateStringLength(dose, nameof(Dose), max: 50, min: 1);
+            MyStringValidator.ValidateStringLength(administrationRoute, nameof(AdministrationRoute), max: 50, min: 1);
 
             this.medication = medication;
             this.dose = dose.Trim();

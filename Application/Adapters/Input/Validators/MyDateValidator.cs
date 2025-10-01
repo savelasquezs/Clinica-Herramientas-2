@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Clinica_Herramientas_2.Domain.Model.Validations
+namespace Clinica_Herramientas_2.Application.Adapters.Input.Validators
 {
     internal class MyDateValidator
     {

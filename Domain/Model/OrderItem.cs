@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Clinica_Herramientas_2.Application.Adapters.Input.Validators;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -45,7 +46,7 @@ namespace Clinica_Herramientas_2.Domain.Model
             : base(orderNumber, itemNumber, cost)
         {
             ArgumentNullException.ThrowIfNull(medication);
-            Validations.MyStringValidator.ValidateStringLength(dose, nameof(Dose), max: 50, min: 1);
+            MyStringValidator.ValidateStringLength(dose, nameof(Dose), max: 50, min: 1);
             if (treatmentDuration <= 0)
             {
                 throw new ArgumentException("TreatmentDuration debe ser mayor que cero.");
