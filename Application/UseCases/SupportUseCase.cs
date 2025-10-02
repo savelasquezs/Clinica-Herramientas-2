@@ -1,0 +1,126 @@
+using Clinica_Herramientas_2.Domain.Model;
+using Clinica_Herramientas_2.Domain.Services;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Clinica_Herramientas_2.Application.UseCases
+{
+    internal class SupportUseCase
+    {
+        private ManageInventory manageInventory;
+        private User currentUser;
+
+        internal ManageInventory ManageInventory { get => manageInventory; set => manageInventory = value; }
+        internal User CurrentUser { get => currentUser; set => currentUser = value; }
+
+        public SupportUseCase(ManageInventory manageInventory)
+        {
+            this.ManageInventory = manageInventory;
+        }
+
+        public void SetCurrentUser(User user)
+        {
+            if (user.Role != Role.Support)
+            {
+                throw new Exception("Solo usuarios de soporte pueden acceder a esta funcionalidad");
+            }
+            this.CurrentUser = user;
+        }
+
+        public void CreateMedication(int id, string name, decimal cost, string defaultDose, int treatmentDurationDays)
+        {
+            if (this.CurrentUser == null)
+            {
+                throw new Exception("Debe establecer un usuario de soporte válido");
+            }
+
+            var medication = new Medication(id, name, cost, defaultDose, treatmentDurationDays);
+            ManageInventory.CreateMedication(medication);
+        }
+
+        public void UpdateMedication(Medication medication)
+        {
+            if (this.CurrentUser == null)
+            {
+                throw new Exception("Debe establecer un usuario de soporte válido");
+            }
+
+            ManageInventory.UpdateMedication(medication);
+        }
+
+        public void CreateProcedure(int id, string name, decimal cost, int frequency, bool requiresSpecialist, int? specialistTypeId)
+        {
+            if (this.CurrentUser == null)
+            {
+                throw new Exception("Debe establecer un usuario de soporte válido");
+            }
+
+            var procedure = new Procedure(id, name, cost, frequency, requiresSpecialist, specialistTypeId);
+            ManageInventory.CreateProcedure(procedure);
+        }
+
+        public void UpdateProcedure(Procedure procedure)
+        {
+            if (this.CurrentUser == null)
+            {
+                throw new Exception("Debe establecer un usuario de soporte válido");
+            }
+
+            ManageInventory.UpdateProcedure(procedure);
+        }
+
+        public void CreateDiagnosticAid(int id, string name, decimal cost, int quantity, bool requiresSpecialist, int? specialistTypeId)
+        {
+            if (this.CurrentUser == null)
+            {
+                throw new Exception("Debe establecer un usuario de soporte válido");
+            }
+
+            var diagnosticAid = new DiagnosticAid(id, name, cost, quantity, requiresSpecialist, specialistTypeId);
+            ManageInventory.CreateDiagnosticAid(diagnosticAid);
+        }
+
+        public void UpdateDiagnosticAid(DiagnosticAid diagnosticAid)
+        {
+            if (this.CurrentUser == null)
+            {
+                throw new Exception("Debe establecer un usuario de soporte válido");
+            }
+
+            ManageInventory.UpdateDiagnosticAid(diagnosticAid);
+        }
+
+        public List<Medication> GetAllMedications()
+        {
+            if (this.CurrentUser == null)
+            {
+                throw new Exception("Debe establecer un usuario de soporte válido");
+            }
+
+            return ManageInventory.GetAllMedications();
+        }
+
+        public List<Procedure> GetAllProcedures()
+        {
+            if (this.CurrentUser == null)
+            {
+                throw new Exception("Debe establecer un usuario de soporte válido");
+            }
+
+            return ManageInventory.GetAllProcedures();
+        }
+
+        public List<DiagnosticAid> GetAllDiagnosticAids()
+        {
+            if (this.CurrentUser == null)
+            {
+                throw new Exception("Debe establecer un usuario de soporte válido");
+            }
+
+            return ManageInventory.GetAllDiagnosticAids();
+        }
+    }
+}
