@@ -10,6 +10,7 @@ namespace Clinica_Herramientas_2.Domain.Ports
     internal interface IOrderPort
     {
         public Order FindByNumber(int orderNumber);
+        public List<Order> FindByPatientDni(string patientDni);
         public bool ItemExists(int orderNumber, int itemNumber);
         public void Save(Order order);
         public void Update(Order order);

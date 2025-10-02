@@ -8,32 +8,29 @@ using System.Threading.Tasks;
 
 namespace Clinica_Herramientas_2.Application.UseCases
 {
-    internal class DoctorUseCase
+    internal class DoctorUseCase : BaseUseCase
     {
         private CreateOrder createOrder;
         private CreateOrderItem createOrderItem;
         private AddOrderItem addOrderItem;
         private CreateMedicalRecord createMedicalRecord;
         private ViewMedicalHistory viewMedicalHistory;
-        private ViewPatientInformation viewPatientInformation;
-        private User currentUser;
 
         internal CreateOrder CreateOrder { get => createOrder; set => createOrder = value; }
         internal CreateOrderItem CreateOrderItem { get => createOrderItem; set => createOrderItem = value; }
         internal AddOrderItem AddOrderItem { get => addOrderItem; set => addOrderItem = value; }
         internal CreateMedicalRecord CreateMedicalRecord { get => createMedicalRecord; set => createMedicalRecord = value; }
         internal ViewMedicalHistory ViewMedicalHistory { get => viewMedicalHistory; set => viewMedicalHistory = value; }
-        internal ViewPatientInformation ViewPatientInformation { get => viewPatientInformation; set => viewPatientInformation = value; }
         internal User CurrentUser { get => currentUser; set => currentUser = value; }
 
         public DoctorUseCase(CreateOrder createOrder, CreateOrderItem createOrderItem, AddOrderItem addOrderItem, CreateMedicalRecord createMedicalRecord, ViewMedicalHistory viewMedicalHistory, ViewPatientInformation viewPatientInformation)
+            : base(viewPatientInformation)
         {
-            this.CreateOrder = createOrder;
-            this.CreateOrderItem = createOrderItem;
-            this.AddOrderItem = addOrderItem;
-            this.CreateMedicalRecord = createMedicalRecord;
-            this.ViewMedicalHistory = viewMedicalHistory;
-            this.ViewPatientInformation = viewPatientInformation;
+            this.createOrder = createOrder;
+            this.createOrderItem = createOrderItem;
+            this.addOrderItem = addOrderItem;
+            this.createMedicalRecord = createMedicalRecord;
+            this.viewMedicalHistory = viewMedicalHistory;
         }
 
         public void SetCurrentUser(User user)
@@ -45,14 +42,14 @@ namespace Clinica_Herramientas_2.Application.UseCases
             this.CurrentUser = user;
         }
 
-        public Order CreateOrder(int orderNumber, DateTime creationDate)
+        public Order CreateNewOrder(int orderNumber, DateTime creationDate)
         {
             if (this.CurrentUser == null)
             {
                 throw new Exception("Debe establecer un médico válido");
             }
 
-            return CreateOrder.Create(orderNumber, creationDate);
+            return createOrder.Create(orderNumber, creationDate);
         }
 
         public void AddMedicationToOrder(Order order, int itemNumber, decimal cost, Medication medication, string dose, int treatmentDuration)
@@ -62,8 +59,16 @@ namespace Clinica_Herramientas_2.Application.UseCases
                 throw new Exception("Debe establecer un médico válido");
             }
 
-            var medicationOrderItem = new MedicationOrderItem(order.OrderNumber, itemNumber, cost, medication, dose, treatmentDuration);
-            AddOrderItem.Add(order, medicationOrderItem);
+            var dto = new CreateOrderItemDTO
+            {
+                OrderNumber = order.OrderNumber,
+                Cost = cost,
+                ItemType = OrderItemType.Medication,
+                MedicationId = medication.Id,
+                Dose = dose,
+                TreatmentDuration = treatmentDuration
+            };
+            addOrderItem.AddItem(dto);
         }
 
         public void AddProcedureToOrder(Order order, int itemNumber, decimal cost, Procedure procedure, int frequency, bool requiresSpecialist, int? specialistTypeId)
@@ -73,8 +78,17 @@ namespace Clinica_Herramientas_2.Application.UseCases
                 throw new Exception("Debe establecer un médico válido");
             }
 
-            var procedureOrderItem = new ProcedureOrderItem(order.OrderNumber, itemNumber, cost, procedure, frequency, requiresSpecialist, specialistTypeId);
-            AddOrderItem.Add(order, procedureOrderItem);
+            var dto = new CreateOrderItemDTO
+            {
+                OrderNumber = order.OrderNumber,
+                Cost = cost,
+                ItemType = OrderItemType.Procedure,
+                ProcedureId = procedure.Id,
+                Frequency = frequency,
+                RequiresSpecialist = requiresSpecialist,
+                SpecialistTypeId = specialistTypeId
+            };
+            addOrderItem.AddItem(dto);
         }
 
         public void AddDiagnosticAidToOrder(Order order, int itemNumber, decimal cost, DiagnosticAid diagnosticAid, int quantity, bool requiresSpecialist, int? specialistTypeId)
@@ -84,11 +98,20 @@ namespace Clinica_Herramientas_2.Application.UseCases
                 throw new Exception("Debe establecer un médico válido");
             }
 
-            var diagnosticAidOrderItem = new DiagnosticAidOrderItem(order.OrderNumber, itemNumber, cost, diagnosticAid, quantity, requiresSpecialist, specialistTypeId);
-            AddOrderItem.Add(order, diagnosticAidOrderItem);
+            var dto = new CreateOrderItemDTO
+            {
+                OrderNumber = order.OrderNumber,
+                Cost = cost,
+                ItemType = OrderItemType.DiagnosticAid,
+                DiagnosticAidId = diagnosticAid.Id,
+                Quantity = quantity,
+                RequiresSpecialist = requiresSpecialist,
+                SpecialistTypeId = specialistTypeId
+            };
+            addOrderItem.AddItem(dto);
         }
 
-        public void CreateMedicalRecord(DateTime date, Patient patient, string consultationReason, string symptoms, string diagnosis, Order order)
+        public void CreateNewMedicalRecord(DateTime date, Patient patient, string consultationReason, string symptoms, string diagnosis, Order order = null)
         {
             if (this.CurrentUser == null)
             {
@@ -96,17 +119,7 @@ namespace Clinica_Herramientas_2.Application.UseCases
             }
 
             var medicalRecord = new MedicalRecord(date, patient, this.CurrentUser, consultationReason, symptoms, diagnosis, order);
-            CreateMedicalRecord.Create(medicalRecord);
-        }
-
-        public void AddMedicalRecordToHistory(string patientDni, DateTime date, string consultationReason, string symptoms, string diagnosis)
-        {
-            if (this.CurrentUser == null)
-            {
-                throw new Exception("Debe establecer un médico válido");
-            }
-
-            ViewMedicalHistory.AddMedicalRecord(patientDni, date, this.CurrentUser.Dni, consultationReason, symptoms, diagnosis, this.CurrentUser);
+            createMedicalRecord.Create(medicalRecord);
         }
 
         public List<MedicalRecord> GetMedicalHistory(string patientDni)
@@ -116,47 +129,8 @@ namespace Clinica_Herramientas_2.Application.UseCases
                 throw new Exception("Debe establecer un médico válido");
             }
 
-            return ViewMedicalHistory.GetMedicalHistory(patientDni, this.CurrentUser);
+            return viewMedicalHistory.GetMedicalHistory(patientDni, this.CurrentUser);
         }
 
-        public Patient GetPatientByDni(string dni)
-        {
-            if (this.CurrentUser == null)
-            {
-                throw new Exception("Debe establecer un médico válido");
-            }
-
-            return ViewPatientInformation.GetPatientByDni(dni);
-        }
-
-        public List<Appointment> GetPatientAppointments(string patientDni)
-        {
-            if (this.CurrentUser == null)
-            {
-                throw new Exception("Debe establecer un médico válido");
-            }
-
-            return ViewPatientInformation.GetPatientAppointments(patientDni);
-        }
-
-        public List<Order> GetPatientOrders(string patientDni)
-        {
-            if (this.CurrentUser == null)
-            {
-                throw new Exception("Debe establecer un médico válido");
-            }
-
-            return ViewPatientInformation.GetPatientOrders(patientDni);
-        }
-
-        public List<Patient> GetAllPatients()
-        {
-            if (this.CurrentUser == null)
-            {
-                throw new Exception("Debe establecer un médico válido");
-            }
-
-            return ViewPatientInformation.GetAllPatients();
-        }
     }
 }

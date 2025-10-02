@@ -14,5 +14,6 @@ namespace Clinica_Herramientas_2.Domain.Ports
         void Update(Procedure procedure);
         void Delete(int id);
         IEnumerable<Procedure> GetAll();
+        List<Procedure> FindAll();
     }
 }

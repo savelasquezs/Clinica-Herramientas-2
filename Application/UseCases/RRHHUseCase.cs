@@ -22,9 +22,9 @@ namespace Clinica_Herramientas_2.Application.UseCases
 
         public RRHHUseCase(CreateUser createUser, UpdateUser updateUser, DeleteUser deleteUser)
         {
-            this.CreateUser = createUser;
-            this.UpdateUser = updateUser;
-            this.DeleteUser = deleteUser;
+            this.createUser = createUser;
+            this.updateUser = updateUser;
+            this.deleteUser = deleteUser;
         }
 
         public void SetCurrentUser(User user)
@@ -36,7 +36,7 @@ namespace Clinica_Herramientas_2.Application.UseCases
             this.CurrentUser = user;
         }
 
-        public void CreateUser(string fullname, string dni, string email, string phonenumber, DateOnly birthdate, string address, Role role, string username, string password)
+        public void CreateNewUser(string fullname, string dni, string email, string phonenumber, DateOnly birthdate, string address, Role role, string username, string password)
         {
             if (this.CurrentUser == null)
             {
@@ -44,27 +44,32 @@ namespace Clinica_Herramientas_2.Application.UseCases
             }
 
             var newUser = new User(fullname, dni, email, phonenumber, birthdate, address, role, username, password);
-            CreateUser.Create(this.CurrentUser, newUser);
+            createUser.Create(this.CurrentUser, newUser);
         }
 
-        public void UpdateUser(User userToUpdate, string fullname, string email, string phonenumber, string address)
+        public void UpdateExistingUser(User userToUpdate, string fullname, string email, string phonenumber, string address)
         {
             if (this.CurrentUser == null)
             {
                 throw new Exception("Debe establecer un usuario de RRHH válido");
             }
 
-            UpdateUser.Update(this.CurrentUser, userToUpdate, fullname, email, phonenumber, address);
+            // Actualizar los campos del usuario
+            userToUpdate.SetEmail(email);
+            userToUpdate.SetPhone(phonenumber);
+            userToUpdate.SetAddress(address);
+            
+            updateUser.Update(this.CurrentUser, userToUpdate);
         }
 
-        public void DeleteUser(User userToDelete)
+        public void DeleteExistingUser(User userToDelete)
         {
             if (this.CurrentUser == null)
             {
                 throw new Exception("Debe establecer un usuario de RRHH válido");
             }
 
-            DeleteUser.Delete(this.CurrentUser, userToDelete);
+            deleteUser.Delete(this.CurrentUser, userToDelete);
         }
     }
 }

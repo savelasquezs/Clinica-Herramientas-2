@@ -14,5 +14,6 @@ namespace Clinica_Herramientas_2.Domain.Ports
         void Update(DiagnosticAid aid);
         void Delete(int id);
         IEnumerable<DiagnosticAid> GetAll();
+        List<DiagnosticAid> FindAll();
     }
 }

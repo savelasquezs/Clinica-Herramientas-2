@@ -8,29 +8,26 @@ using System.Threading.Tasks;
 
 namespace Clinica_Herramientas_2.Application.UseCases
 {
-    internal class AdminUseCase
+    internal class AdminUseCase : BaseUseCase
     {
         private CreatePatient createPatient;
         private UpdatePatient updatePatient;
         private CreateAppointment createAppointment;
         private CreateInvoice createInvoice;
-        private ViewPatientInformation viewPatientInformation;
-        private User currentUser;
 
         internal CreatePatient CreatePatient { get => createPatient; set => createPatient = value; }
         internal UpdatePatient UpdatePatient { get => updatePatient; set => updatePatient = value; }
         internal CreateAppointment CreateAppointment { get => createAppointment; set => createAppointment = value; }
         internal CreateInvoice CreateInvoice { get => createInvoice; set => createInvoice = value; }
-        internal ViewPatientInformation ViewPatientInformation { get => viewPatientInformation; set => viewPatientInformation = value; }
         internal User CurrentUser { get => currentUser; set => currentUser = value; }
 
         public AdminUseCase(CreatePatient createPatient, UpdatePatient updatePatient, CreateAppointment createAppointment, CreateInvoice createInvoice, ViewPatientInformation viewPatientInformation)
+            : base(viewPatientInformation)
         {
-            this.CreatePatient = createPatient;
-            this.UpdatePatient = updatePatient;
-            this.CreateAppointment = createAppointment;
-            this.CreateInvoice = createInvoice;
-            this.ViewPatientInformation = viewPatientInformation;
+            this.createPatient = createPatient;
+            this.updatePatient = updatePatient;
+            this.createAppointment = createAppointment;
+            this.createInvoice = createInvoice;
         }
 
         public void SetCurrentUser(User user)
@@ -42,7 +39,7 @@ namespace Clinica_Herramientas_2.Application.UseCases
             this.CurrentUser = user;
         }
 
-        public void CreatePatient(string fullname, string dni, string email, string phonenumber, DateOnly birthdate, string address, Gender gender, string emergencyFirstName, string emergencyLastName, string emergencyRelationship, string emergencyPhone, string insuranceCompanyName, string insurancePolicyNumber, bool insuranceIsActive, DateTime insuranceExpirationDate)
+        public void CreateNewPatient(string fullname, string dni, string email, string phonenumber, DateOnly birthdate, string address, Gender gender, string emergencyFirstName, string emergencyLastName, string emergencyRelationship, string emergencyPhone, string insuranceCompanyName, string insurancePolicyNumber, bool insuranceIsActive, DateTime insuranceExpirationDate)
         {
             if (this.CurrentUser == null)
             {
@@ -53,20 +50,25 @@ namespace Clinica_Herramientas_2.Application.UseCases
             var healthInsurance = new HealthInsurance(insuranceCompanyName, insurancePolicyNumber, insuranceIsActive, insuranceExpirationDate);
             var patient = new Patient(fullname, dni, email, phonenumber, birthdate, address, gender, emergencyContact, healthInsurance);
 
-            CreatePatient.Create(this.CurrentUser, patient);
+            createPatient.Create(this.CurrentUser, patient);
         }
 
-        public void UpdatePatient(Patient patient, string email, string phone, string address)
+        public void UpdateExistingPatient(Patient patient, string email, string phone, string address)
         {
             if (this.CurrentUser == null)
             {
                 throw new Exception("Debe establecer un usuario administrativo válido");
             }
 
-            UpdatePatient.Update(this.CurrentUser, patient, email, phone, address);
+            // Actualizar los campos del paciente
+            patient.SetEmail(email);
+            patient.SetPhone(phone);
+            patient.SetAddress(address);
+
+            updatePatient.Update(this.CurrentUser, patient);
         }
 
-        public void CreateAppointment(int id, string patientDni, DateTime date)
+        public void CreateNewAppointment(int id, string patientDni, DateTime date)
         {
             if (this.CurrentUser == null)
             {
@@ -74,57 +76,18 @@ namespace Clinica_Herramientas_2.Application.UseCases
             }
 
             var appointment = new Appointment(id, null, date); // El paciente se valida en el servicio
-            CreateAppointment.Create(appointment, patientDni);
+            createAppointment.Create(appointment, patientDni);
         }
 
-        public Invoice CreateInvoice(int invoiceNumber, string patientDni, string doctorDni, List<int> orderNumbers, DateTime invoiceDate)
+        public Invoice CreateNewInvoice(int invoiceNumber, string patientDni, string doctorDni, List<int> orderNumbers, DateTime invoiceDate)
         {
             if (this.CurrentUser == null)
             {
                 throw new Exception("Debe establecer un usuario administrativo válido");
             }
 
-            return CreateInvoice.Create(invoiceNumber, patientDni, doctorDni, orderNumbers, invoiceDate);
+            return createInvoice.Create(invoiceNumber, patientDni, doctorDni, orderNumbers, invoiceDate);
         }
 
-        public Patient GetPatientByDni(string dni)
-        {
-            if (this.CurrentUser == null)
-            {
-                throw new Exception("Debe establecer un usuario administrativo válido");
-            }
-
-            return ViewPatientInformation.GetPatientByDni(dni);
-        }
-
-        public List<Appointment> GetPatientAppointments(string patientDni)
-        {
-            if (this.CurrentUser == null)
-            {
-                throw new Exception("Debe establecer un usuario administrativo válido");
-            }
-
-            return ViewPatientInformation.GetPatientAppointments(patientDni);
-        }
-
-        public List<Order> GetPatientOrders(string patientDni)
-        {
-            if (this.CurrentUser == null)
-            {
-                throw new Exception("Debe establecer un usuario administrativo válido");
-            }
-
-            return ViewPatientInformation.GetPatientOrders(patientDni);
-        }
-
-        public List<Patient> GetAllPatients()
-        {
-            if (this.CurrentUser == null)
-            {
-                throw new Exception("Debe establecer un usuario administrativo válido");
-            }
-
-            return ViewPatientInformation.GetAllPatients();
-        }
     }
 }

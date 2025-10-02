@@ -18,7 +18,7 @@ namespace Clinica_Herramientas_2.Application.UseCases
 
         public SupportUseCase(ManageInventory manageInventory)
         {
-            this.ManageInventory = manageInventory;
+            this.manageInventory = manageInventory;
         }
 
         public void SetCurrentUser(User user)
@@ -38,7 +38,7 @@ namespace Clinica_Herramientas_2.Application.UseCases
             }
 
             var medication = new Medication(id, name, cost, defaultDose, treatmentDurationDays);
-            ManageInventory.CreateMedication(medication);
+            manageInventory.CreateMedication(medication);
         }
 
         public void UpdateMedication(Medication medication)
@@ -48,7 +48,7 @@ namespace Clinica_Herramientas_2.Application.UseCases
                 throw new Exception("Debe establecer un usuario de soporte válido");
             }
 
-            ManageInventory.UpdateMedication(medication);
+            manageInventory.UpdateMedication(medication);
         }
 
         public void CreateProcedure(int id, string name, decimal cost, int frequency, bool requiresSpecialist, int? specialistTypeId)
@@ -59,7 +59,7 @@ namespace Clinica_Herramientas_2.Application.UseCases
             }
 
             var procedure = new Procedure(id, name, cost, frequency, requiresSpecialist, specialistTypeId);
-            ManageInventory.CreateProcedure(procedure);
+            manageInventory.CreateProcedure(procedure);
         }
 
         public void UpdateProcedure(Procedure procedure)
@@ -69,7 +69,7 @@ namespace Clinica_Herramientas_2.Application.UseCases
                 throw new Exception("Debe establecer un usuario de soporte válido");
             }
 
-            ManageInventory.UpdateProcedure(procedure);
+            manageInventory.UpdateProcedure(procedure);
         }
 
         public void CreateDiagnosticAid(int id, string name, decimal cost, int quantity, bool requiresSpecialist, int? specialistTypeId)
@@ -80,7 +80,7 @@ namespace Clinica_Herramientas_2.Application.UseCases
             }
 
             var diagnosticAid = new DiagnosticAid(id, name, cost, quantity, requiresSpecialist, specialistTypeId);
-            ManageInventory.CreateDiagnosticAid(diagnosticAid);
+            manageInventory.CreateDiagnosticAid(diagnosticAid);
         }
 
         public void UpdateDiagnosticAid(DiagnosticAid diagnosticAid)
@@ -90,7 +90,7 @@ namespace Clinica_Herramientas_2.Application.UseCases
                 throw new Exception("Debe establecer un usuario de soporte válido");
             }
 
-            ManageInventory.UpdateDiagnosticAid(diagnosticAid);
+            manageInventory.UpdateDiagnosticAid(diagnosticAid);
         }
 
         public List<Medication> GetAllMedications()
@@ -100,7 +100,7 @@ namespace Clinica_Herramientas_2.Application.UseCases
                 throw new Exception("Debe establecer un usuario de soporte válido");
             }
 
-            return ManageInventory.GetAllMedications();
+            return manageInventory.GetAllMedications();
         }
 
         public List<Procedure> GetAllProcedures()
@@ -110,7 +110,7 @@ namespace Clinica_Herramientas_2.Application.UseCases
                 throw new Exception("Debe establecer un usuario de soporte válido");
             }
 
-            return ManageInventory.GetAllProcedures();
+            return manageInventory.GetAllProcedures();
         }
 
         public List<DiagnosticAid> GetAllDiagnosticAids()
@@ -120,7 +120,7 @@ namespace Clinica_Herramientas_2.Application.UseCases
                 throw new Exception("Debe establecer un usuario de soporte válido");
             }
 
-            return ManageInventory.GetAllDiagnosticAids();
+            return manageInventory.GetAllDiagnosticAids();
         }
     }
 }
