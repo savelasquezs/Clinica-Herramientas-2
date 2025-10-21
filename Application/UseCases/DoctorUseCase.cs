@@ -111,7 +111,7 @@ namespace Clinica_Herramientas_2.Application.UseCases
             addOrderItem.AddItem(dto);
         }
 
-        public void CreateNewMedicalRecord(DateTime date, Patient patient, string consultationReason, string symptoms, string diagnosis, Order order = null)
+        public void CreateNewMedicalRecord(DateTime date, Patient patient, string consultationReason, string symptoms, string diagnosis, Order? order = null)
         {
             if (this.CurrentUser == null)
             {

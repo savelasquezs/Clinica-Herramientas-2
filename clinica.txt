@@ -155,8 +155,7 @@ historia clínica. Utilizando la aplicación, los médicos pueden crear y actual
 de los pacientes, incluyendo diagnósticos, tratamientos, resultados de pruebas, prescripciones y 
 cualquier otra información relevante sobre la salud del paciente. Toda atención por parte del 
 personal médico genera un registro en la historia clínica. 
-• La historia clínica se manejará de forma no estructurada lo que implica que será un 
-diccionario y se almacenará en una base de datos de tipo NoSQL. 
+ 
 • Cada paciente tendrá la cedula como su clave de identificación principal dentro de los 
 registros que tiene el diccionario, y como subclave tendrá la fecha de atención. 
 Historia clínica
@@ -220,8 +219,7 @@ de forma diferente a un medicamento o procedimiento
 ⇒ En caso de haber varios procedimientos solicitados, todos van asociados a la misma orden 
 ⇒ No puede existir dos elementos dentro de la misma orden que correspondan al mismo 
 ítem, a pesar de que uno corresponda a un medicamento y el otro a un procedimiento. 
-Las ordenes se almacenan de forma estructurada en una base de datos de tipo SQL (para 
-estudiantes de SW5 se utiliza la misma NoSQL) con los siguientes datos: 
+Las ordenes se almacenan de forma estructurada en una base de datos de tipo SQL con los siguientes datos: 
 • Numero de orden. 
 • Cédula del paciente 
 • Cédula del medico 
