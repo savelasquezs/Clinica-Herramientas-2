@@ -11,7 +11,7 @@ namespace Clinica_Herramientas_2.Domain.Ports
     {
         public bool IsValidVitalData(VitalData vitalData);
         public void Save(NurseVisit nurseVisit);
-        public NurseVisit FindById(NurseVisit nurseVisit);
+        public NurseVisit? FindById(NurseVisit nurseVisit);
         public void DeleteById(NurseVisit nurseVisit);
         public bool OrderItemExists(OrderItem orderItem);
 

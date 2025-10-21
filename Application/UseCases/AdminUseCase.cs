@@ -75,7 +75,7 @@ namespace Clinica_Herramientas_2.Application.UseCases
                 throw new Exception("Debe establecer un usuario administrativo válido");
             }
 
-            var appointment = new Appointment(id, null, date); // El paciente se valida en el servicio
+            var appointment = new Appointment(id, null!, date); // El paciente se valida en el servicio
             createAppointment.Create(appointment, patientDni);
         }
 

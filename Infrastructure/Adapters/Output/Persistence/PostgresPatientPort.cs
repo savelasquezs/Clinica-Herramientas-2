@@ -13,7 +13,7 @@ namespace Clinica_Herramientas_2.Infrastructure.Adapters.Output.Persistence
             this.context = context;
         }
         
-        public Patient FindByDocument(string patientDni)
+        public Patient? FindByDocument(string patientDni)
         {
             return context.Patients
                 .Include(p => p.Appointments)

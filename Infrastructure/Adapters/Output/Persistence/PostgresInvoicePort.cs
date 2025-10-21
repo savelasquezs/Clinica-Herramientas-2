@@ -13,7 +13,7 @@ namespace Clinica_Herramientas_2.Infrastructure.Adapters.Output.Persistence
             this.context = context;
         }
         
-        public Invoice FindByInvoiceNumber(int invoiceNumber)
+        public Invoice? FindByInvoiceNumber(int invoiceNumber)
         {
             return context.Invoices
                 .Include(i => i.Patient)
@@ -69,7 +69,7 @@ namespace Clinica_Herramientas_2.Infrastructure.Adapters.Output.Persistence
                 .ToList();
         }
         
-        public Invoice FindByNumber(int invoiceNumber)
+        public Invoice? FindByNumber(int invoiceNumber)
         {
             return FindByInvoiceNumber(invoiceNumber);
         }

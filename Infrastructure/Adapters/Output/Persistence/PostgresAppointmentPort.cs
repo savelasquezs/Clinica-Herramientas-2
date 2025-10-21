@@ -13,7 +13,7 @@ namespace Clinica_Herramientas_2.Infrastructure.Adapters.Output.Persistence
             this.context = context;
         }
         
-        public Appointment FindById(int id)
+        public Appointment? FindById(int id)
         {
             return context.Appointments
                 .Include(a => a.Patient1)

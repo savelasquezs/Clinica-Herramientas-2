@@ -28,17 +28,17 @@ namespace Clinica_Herramientas_2.Infrastructure.Adapters.Output.Persistence
             return context.DiagnosticAids.ToList();
         }
         
-        public Medication GetMedicationById(int id)
+        public Medication? GetMedicationById(int id)
         {
             return context.Medications.FirstOrDefault(m => m.Id == id);
         }
         
-        public Procedure GetProcedureById(int id)
+        public Procedure? GetProcedureById(int id)
         {
             return context.Procedures.FirstOrDefault(p => p.Id == id);
         }
         
-        public DiagnosticAid GetDiagnosticAidById(int id)
+        public DiagnosticAid? GetDiagnosticAidById(int id)
         {
             return context.DiagnosticAids.FirstOrDefault(d => d.Id == id);
         }
@@ -61,17 +61,17 @@ namespace Clinica_Herramientas_2.Infrastructure.Adapters.Output.Persistence
             context.SaveChanges();
         }
         
-        public Medication FindMedicationById(int id)
+        public Medication? FindMedicationById(int id)
         {
             return GetMedicationById(id);
         }
         
-        public Procedure FindProcedureById(int id)
+        public Procedure? FindProcedureById(int id)
         {
             return GetProcedureById(id);
         }
         
-        public DiagnosticAid FindDiagnosticAidById(int id)
+        public DiagnosticAid? FindDiagnosticAidById(int id)
         {
             return GetDiagnosticAidById(id);
         }

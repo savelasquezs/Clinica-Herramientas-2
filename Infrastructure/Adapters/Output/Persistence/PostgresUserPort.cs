@@ -13,7 +13,7 @@ namespace Clinica_Herramientas_2.Infrastructure.Adapters.Output.Persistence
             this.context = context;
         }
         
-        public User FindByDocument(string userDni)
+        public User? FindByDocument(string userDni)
         {
             return context.Users
                 .Include(u => u.MedicalRecordsAsDoctor)
@@ -50,12 +50,12 @@ namespace Clinica_Herramientas_2.Infrastructure.Adapters.Output.Persistence
             return context.Users.Where(u => u.Role == role).ToList();
         }
         
-        public User FindByUserName(User user)
+        public User? FindByUserName(User user)
         {
             return context.Users.FirstOrDefault(u => u.Username == user.Username);
         }
         
-        public User FindByEmail(User user)
+        public User? FindByEmail(User user)
         {
             return context.Users.FirstOrDefault(u => u.Email == user.Email);
         }

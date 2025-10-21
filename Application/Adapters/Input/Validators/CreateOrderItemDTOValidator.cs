@@ -28,7 +28,7 @@ namespace Clinica_Herramientas_2.Application.Adapters.Input.Validators
             {
                 ValidateStringLength(dose, "Dose", max: 50, min: 1);
             }
-            return dose?.Trim();
+            return dose?.Trim() ?? string.Empty;
         }
 
         public int ValidateTreatmentDuration(int? treatmentDuration)

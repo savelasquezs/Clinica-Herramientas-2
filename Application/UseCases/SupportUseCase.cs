@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+#nullable disable
+
 namespace Clinica_Herramientas_2.Application.UseCases
 {
     public class SupportUseCase

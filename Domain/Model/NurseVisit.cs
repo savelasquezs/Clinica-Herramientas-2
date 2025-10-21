@@ -1,4 +1,6 @@
 ﻿
+#nullable disable
+
 namespace Clinica_Herramientas_2.Domain.Model
 {
     public class NurseVisit:PerformedProcedure
@@ -36,7 +38,7 @@ namespace Clinica_Herramientas_2.Domain.Model
         protected NurseVisit() : base(null!, "", "", DateTime.MinValue) { }
 
         public DateTime VisitTime { get => visitTime; private set => visitTime = value; }
-        public OrderItem OrderItem { get; internal set; }
+        public new OrderItem OrderItem { get; internal set; }
         internal Patient Patient { get => patient; private set => patient = value; }
         internal User Nurse { get => nurse; private set => nurse = value; }
         internal VitalData VitalData { get => vitalData; private set => vitalData = value; }

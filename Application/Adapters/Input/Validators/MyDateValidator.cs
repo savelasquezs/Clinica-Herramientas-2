@@ -36,7 +36,7 @@ namespace Clinica_Herramientas_2.Application.Adapters.Input.Validators
         {
             // Handle null values - let [Required] attribute handle null validation
             if (value == null)
-                return ValidationResult.Success;
+                return ValidationResult.Success!;
 
             // Ensure we have a DateTime
             if (value is DateTime date)
@@ -44,12 +44,12 @@ namespace Clinica_Herramientas_2.Application.Adapters.Input.Validators
                 try
                 {
                     // Safe null-coalescing for field name
-                    string fieldName = validationContext?.DisplayName
-                                    ?? validationContext?.MemberName
-                                    ?? "Campo";
+                    string fieldName = validationContext?.DisplayName ?? 
+                                      validationContext?.MemberName ?? 
+                                      "Campo";
 
                     MyDateValidator.ValidateDateNotInFuture(date, fieldName);
-                    return ValidationResult.Success;
+                    return ValidationResult.Success!;
                 }
                 catch (ArgumentException ex)
                 {
@@ -58,9 +58,9 @@ namespace Clinica_Herramientas_2.Application.Adapters.Input.Validators
             }
 
             // Handle invalid type
-            string displayName = validationContext?.DisplayName
-                              ?? validationContext?.MemberName
-                              ?? "El campo";
+            string displayName = validationContext?.DisplayName ?? 
+                                 validationContext?.MemberName ?? 
+                                 "El campo";
 
             return new ValidationResult($"{displayName} debe ser una fecha válida.");
         }

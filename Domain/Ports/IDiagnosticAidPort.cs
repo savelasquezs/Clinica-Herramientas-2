@@ -9,7 +9,7 @@ namespace Clinica_Herramientas_2.Domain.Ports
 {
     public interface IDiagnosticAidPort
     {
-        DiagnosticAid FindById(int id);
+        DiagnosticAid? FindById(int id);
         void Save(DiagnosticAid aid);
         void Update(DiagnosticAid aid);
         void Delete(int id);

@@ -9,7 +9,7 @@ namespace Clinica_Herramientas_2.Domain.Ports
 {
     public interface IInvoicePort
     {
-        public Invoice FindByNumber(int invoiceNumber);
+        public Invoice? FindByNumber(int invoiceNumber);
         public List<Invoice> FindByPatient(string patientDni);
         public void Save(Invoice invoice);
         public decimal GetAnnualCopaymentAccumulated(string patientDni, int year);

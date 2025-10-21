@@ -10,7 +10,7 @@ namespace Clinica_Herramientas_2.Domain.Ports
     public interface IMedicalRecordPort
     {
         void Save(MedicalRecord medicalRecord);
-        MedicalRecord FindById(int id);
+        MedicalRecord? FindById(int id);
         List<MedicalRecord> FindByPatientDni(string patientDni);
         List<MedicalRecord> FindByDoctorDni(string doctorDni);
         List<MedicalRecord> FindByDateRange(DateTime startDate, DateTime endDate);

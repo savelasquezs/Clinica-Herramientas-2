@@ -51,7 +51,7 @@ namespace Clinica_Herramientas_2.Domain.Services
             var doctor = userPort.FindByDocument(doctorDni) ?? throw new Exception("El médico no existe");
 
             // Crear el registro de historia clínica
-            var medicalRecord = new MedicalRecord(date, patient, doctor, consultationReason, symptoms, diagnosis, null);
+            var medicalRecord = new MedicalRecord(date, patient, doctor, consultationReason, symptoms, diagnosis, null!);
 
             // Guardar en la base de datos relacional
             medicalRecordPort.Save(medicalRecord);

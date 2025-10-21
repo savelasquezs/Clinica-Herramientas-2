@@ -40,7 +40,11 @@ namespace Clinica_Herramientas_2.Infrastructure.Adapters.Output.Persistence
             foreach (var entity in modelBuilder.Model.GetEntityTypes())
             {
                 // Tablas en snake_case singular
-                entity.SetTableName(ToSnakeCase(entity.GetTableName()));
+                var tableName = entity.GetTableName();
+                if (tableName != null)
+                {
+                    entity.SetTableName(ToSnakeCase(tableName));
+                }
                 
                 // Columnas en snake_case
                 foreach (var property in entity.GetProperties())

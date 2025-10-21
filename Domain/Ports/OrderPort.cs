@@ -9,7 +9,7 @@ namespace Clinica_Herramientas_2.Domain.Ports
 {
     public interface IOrderPort
     {
-        public Order FindByNumber(int orderNumber);
+        public Order? FindByNumber(int orderNumber);
         public List<Order> FindByPatientDni(string patientDni);
         public bool ItemExists(int orderNumber, int itemNumber);
         public void Save(Order order);

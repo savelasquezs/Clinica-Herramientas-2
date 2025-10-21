@@ -13,7 +13,7 @@ namespace Clinica_Herramientas_2.Infrastructure.Adapters.Output.Persistence
             this.context = context;
         }
         
-        public DiagnosticAid FindById(int id)
+        public DiagnosticAid? FindById(int id)
         {
             return context.DiagnosticAids.FirstOrDefault(d => d.Id == id);
         }

@@ -118,7 +118,7 @@ namespace Clinica_Herramientas_2.Application.UseCases
                 throw new Exception("Debe establecer un médico válido");
             }
 
-            var medicalRecord = new MedicalRecord(date, patient, this.CurrentUser, consultationReason, symptoms, diagnosis, order);
+            var medicalRecord = new MedicalRecord(date, patient, this.CurrentUser, consultationReason, symptoms, diagnosis, order ?? null!);
             createMedicalRecord.Create(medicalRecord);
         }
 

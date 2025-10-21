@@ -13,7 +13,7 @@ namespace Clinica_Herramientas_2.Infrastructure.Adapters.Output.Persistence
             this.context = context;
         }
         
-        public NurseVisit FindById(int id)
+        public NurseVisit? FindById(int id)
         {
             return context.NurseVisits
                 .Include(nv => nv.Nurse)
@@ -93,7 +93,7 @@ namespace Clinica_Herramientas_2.Infrastructure.Adapters.Output.Persistence
                    vitalData.Temperature > 0;
         }
         
-        public NurseVisit FindById(NurseVisit nurseVisit)
+        public NurseVisit? FindById(NurseVisit nurseVisit)
         {
             return FindById(nurseVisit.Id);
         }

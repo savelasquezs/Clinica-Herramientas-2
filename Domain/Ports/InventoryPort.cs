@@ -9,9 +9,9 @@ namespace Clinica_Herramientas_2.Domain.Ports
 {
     public interface IInventoryPort
     {
-        public Medication FindMedicationById(int id);
-        public Procedure FindProcedureById(int id);
-        public DiagnosticAid FindDiagnosticAidById(int id);
+        public Medication? FindMedicationById(int id);
+        public Procedure? FindProcedureById(int id);
+        public DiagnosticAid? FindDiagnosticAidById(int id);
     }
 }
 

@@ -13,7 +13,7 @@ namespace Clinica_Herramientas_2.Infrastructure.Adapters.Output.Persistence
             this.context = context;
         }
         
-        public MedicalRecord FindById(int id)
+        public MedicalRecord? FindById(int id)
         {
             return context.MedicalRecords
                 .Include(mr => mr.Patient)

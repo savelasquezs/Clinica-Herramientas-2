@@ -13,7 +13,7 @@ namespace Clinica_Herramientas_2.Infrastructure.Adapters.Output.Persistence
             this.context = context;
         }
         
-        public Order FindByOrderNumber(int orderNumber)
+        public Order? FindByOrderNumber(int orderNumber)
         {
             return context.Orders
                 .Include(o => o.Items)
@@ -61,7 +61,7 @@ namespace Clinica_Herramientas_2.Infrastructure.Adapters.Output.Persistence
                 .ToList();
         }
         
-        public Order FindByNumber(int orderNumber)
+        public Order? FindByNumber(int orderNumber)
         {
             return FindByOrderNumber(orderNumber);
         }

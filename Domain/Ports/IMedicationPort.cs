@@ -9,7 +9,7 @@ namespace Clinica_Herramientas_2.Domain.Ports
 {
     public interface IMedicationPort
     {
-        Medication FindById(int id);
+        Medication? FindById(int id);
         void Save(Medication medication);
         void Update(Medication medication);
         void Delete(int id);

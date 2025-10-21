@@ -9,7 +9,7 @@ namespace Clinica_Herramientas_2.Domain.Ports
 {
     public interface IProcedurePort
     {
-        Procedure FindById(int id);
+        Procedure? FindById(int id);
         void Save(Procedure procedure);
         void Update(Procedure procedure);
         void Delete(int id);

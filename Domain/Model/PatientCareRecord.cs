@@ -1,5 +1,7 @@
 ﻿
 
+#nullable disable
+
 namespace Clinica_Herramientas_2.Domain.Model
 {
     public class PatientCareRecord
