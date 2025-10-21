@@ -1,7 +1,7 @@
 ﻿
 namespace Clinica_Herramientas_2.Domain.Model
 {
-    internal class NurseVisit:PerformedProcedure
+    public class NurseVisit:PerformedProcedure
     {
         private User nurse;
         private Patient patient;
@@ -32,6 +32,9 @@ namespace Clinica_Herramientas_2.Domain.Model
             this.OrderItem = orderItem; 
         }
 
+        // Constructor protegido para EF Core
+        protected NurseVisit() : base(null!, "", "", DateTime.MinValue) { }
+
         public DateTime VisitTime { get => visitTime; private set => visitTime = value; }
         public OrderItem OrderItem { get; internal set; }
         internal Patient Patient { get => patient; private set => patient = value; }
@@ -39,7 +42,7 @@ namespace Clinica_Herramientas_2.Domain.Model
         internal VitalData VitalData { get => vitalData; private set => vitalData = value; }
         internal List<AdministeredMedication> AdministeredMedications { get => administeredMedications; private set => administeredMedications = value; }
     }
-    internal class VitalData
+    public class VitalData
     {
         private string _bloodPressure;
         private double _temperature;
@@ -53,6 +56,9 @@ namespace Clinica_Herramientas_2.Domain.Model
             _pulse = pulse;
             _oxygenLevel = oxygenLevel;
         }
+
+        // Constructor protegido para EF Core
+        protected VitalData() { }
 
         public string BloodPressure { get => _bloodPressure; private set => _bloodPressure = value; }
         public double Temperature { get => _temperature; private set => _temperature = value; }

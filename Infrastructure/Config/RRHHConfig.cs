@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Clinica_Herramientas_2.Infrastructure.Config
 {
-    internal class RRHHConfig
+    public class RRHHConfig
     {
         // Puertos
         public IUserPort UserPort { get; private set; }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Clinica_Herramientas_2.Domain.Services
 {
-    class UpdatePatient(IPatientPort patientPort)
+    public class UpdatePatient(IPatientPort patientPort)
     {
         private readonly IPatientPort patientPort=patientPort;
 

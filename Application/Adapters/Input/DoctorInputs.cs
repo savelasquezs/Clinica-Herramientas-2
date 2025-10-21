@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Clinica_Herramientas_2.Application.Adapters.Input
 {
-    internal class DoctorInputs
+    public class DoctorInputs
     {
         private OrderBuilder orderBuilder;
         private MedicalRecordBuilder medicalRecordBuilder;

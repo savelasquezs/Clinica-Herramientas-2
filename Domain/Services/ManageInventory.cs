@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Clinica_Herramientas_2.Domain.Services
 {
-    internal class ManageInventory
+    public class ManageInventory
     {
         private readonly IMedicationPort medicationPort;
         private readonly IProcedurePort procedurePort;

@@ -8,7 +8,7 @@ using Clinica_Herramientas_2.Domain.Ports;
 
 namespace Clinica_Herramientas_2.Domain.Services
 {
-    internal class CreateInvoice(IInvoicePort invoicePort, IPatientPort patientPort, IUserPort userPort, IOrderPort orderPort, BillingRulesService billingRulesService)
+    public class CreateInvoice(IInvoicePort invoicePort, IPatientPort patientPort, IUserPort userPort, IOrderPort orderPort, BillingRulesService billingRulesService)
     {
         private readonly IInvoicePort invoicePort = invoicePort;
         private readonly IPatientPort patientPort = patientPort;

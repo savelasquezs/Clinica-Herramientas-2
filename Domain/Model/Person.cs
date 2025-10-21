@@ -1,6 +1,6 @@
 ﻿namespace Clinica_Herramientas_2.Domain.Model
 {
-    internal class Person
+    public class Person
     {
         private string fullname;
         private string dni;
@@ -18,6 +18,9 @@
             this.birthdate = birthdate;
             this.address = address.Trim();
         }
+
+        // Constructor protegido para EF Core
+        protected Person() { }
 
         public string Fullname { get => fullname; private set => fullname = value; }
         public string Dni { get => dni; private set => dni = value; }

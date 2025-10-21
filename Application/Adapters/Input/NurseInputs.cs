@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Clinica_Herramientas_2.Application.Adapters.Input
 {
-    internal class NurseInputs
+    public class NurseInputs
     {
         private NurseVisitBuilder nurseVisitBuilder;
         private NurseUseCase nurseUseCase;

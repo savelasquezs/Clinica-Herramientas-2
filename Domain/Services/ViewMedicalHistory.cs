@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Clinica_Herramientas_2.Domain.Services
 {
-    internal class ViewMedicalHistory
+    public class ViewMedicalHistory
     {
         private readonly IPatientPort patientPort;
         private readonly IUserPort userPort;

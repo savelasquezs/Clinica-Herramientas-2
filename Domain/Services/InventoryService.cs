@@ -3,7 +3,7 @@ using Clinica_Herramientas_2.Domain.Ports;
 
 namespace Clinica_Herramientas_2.Domain.Services
 {
-    internal class InventoryService(
+    public class InventoryService(
         IMedicationPort medicationPort,
         IProcedurePort procedurePort,
         IDiagnosticAidPort diagnosticAidPort)

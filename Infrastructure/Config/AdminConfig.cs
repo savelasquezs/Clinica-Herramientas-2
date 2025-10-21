@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Clinica_Herramientas_2.Infrastructure.Config
 {
-    internal class AdminConfig
+    public class AdminConfig
     {
         // Puertos
         public IPatientPort PatientPort { get; private set; }

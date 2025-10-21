@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Clinica_Herramientas_2.Domain.Services
 {
-    class DeleteUser(IUserPort userPort)
+    public class DeleteUser(IUserPort userPort)
     {
         private readonly IUserPort userPort = userPort;
 

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Clinica_Herramientas_2.Domain.Ports
 {
-    interface IInvoicePort
+    public interface IInvoicePort
     {
         public Invoice FindByNumber(int invoiceNumber);
         public List<Invoice> FindByPatient(string patientDni);

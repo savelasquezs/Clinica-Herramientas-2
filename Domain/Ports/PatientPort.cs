@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Clinica_Herramientas_2.Domain.Ports
 {
-    interface IPatientPort
+    public interface IPatientPort
     {
         public Patient FindByDocument(string patientDni);
         public void Save(Patient patient);

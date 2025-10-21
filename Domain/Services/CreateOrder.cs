@@ -8,7 +8,7 @@ using Clinica_Herramientas_2.Domain.Ports;
 
 namespace Clinica_Herramientas_2.Domain.Services
 {
-    internal class CreateOrder(IOrderPort orderPort)
+    public class CreateOrder(IOrderPort orderPort)
     {
         private readonly IOrderPort orderPort = orderPort;
 

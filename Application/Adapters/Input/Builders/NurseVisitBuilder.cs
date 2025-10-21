@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Clinica_Herramientas_2.Application.Adapters.Input.Builders
 {
-    internal class NurseVisitBuilder
+    public class NurseVisitBuilder
     {
         private NurseVisitValidator nurseVisitValidator;
         private VitalDataValidator vitalDataValidator;

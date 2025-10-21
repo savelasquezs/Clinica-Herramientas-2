@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Clinica_Herramientas_2.Domain.Model
 {
-    internal class OrderItem
+    public class OrderItem
     {
         private int orderNumber;
         private int itemNumber;
@@ -19,11 +19,14 @@ namespace Clinica_Herramientas_2.Domain.Model
             this.cost = cost;
         }
 
+        // Constructor protegido para EF Core
+        protected OrderItem() { }
+
         public int OrderNumber { get => orderNumber; private set => orderNumber = value; }
         public int ItemNumber { get => itemNumber; private set => itemNumber = value; }
         public decimal Cost { get => cost; private set => cost = value; }
     }
-    class MedicationOrderItem : OrderItem
+    public class MedicationOrderItem : OrderItem
     {
         private Medication medication;
         private string dose;
@@ -38,12 +41,15 @@ namespace Clinica_Herramientas_2.Domain.Model
             this.treatmentDuration = treatmentDuration;
         }
 
+        // Constructor protegido para EF Core
+        protected MedicationOrderItem() { }
+
         public Medication Medication { get => medication; private set => medication = value; }
         public string Dose { get => dose; private set => dose = value; }
         public int TreatmentDuration { get => treatmentDuration; private set => treatmentDuration = value; }
     }
 
-    class ProcedureOrderItem : OrderItem
+    public class ProcedureOrderItem : OrderItem
     {
         private Procedure procedure;
         private int frequency;
@@ -60,13 +66,16 @@ namespace Clinica_Herramientas_2.Domain.Model
             this.specialistTypeId = specialistTypeId;
         }
 
+        // Constructor protegido para EF Core
+        protected ProcedureOrderItem() { }
+
         public Procedure Procedure { get => procedure; private set => procedure = value; }
         public int Frequency { get => frequency; private set => frequency = value; }
         public bool RequiresSpecialist { get => requiresSpecialist; private set => requiresSpecialist = value; }
         public int? SpecialistTypeId { get => specialistTypeId; private set => specialistTypeId = value; }
     }
 
-    class DiagnosticAidOrderItem : OrderItem
+    public class DiagnosticAidOrderItem : OrderItem
     {
         private DiagnosticAid diagnosticAid;
         private int quantity;
@@ -82,6 +91,9 @@ namespace Clinica_Herramientas_2.Domain.Model
             this.requiresSpecialist = requiresSpecialist;
             this.specialistTypeId = specialistTypeId;
         }
+
+        // Constructor protegido para EF Core
+        protected DiagnosticAidOrderItem() { }
 
         public DiagnosticAid DiagnosticAid { get => diagnosticAid; private set => diagnosticAid = value; }
         public int Quantity { get => quantity; private set => quantity = value; }

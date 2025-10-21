@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Clinica_Herramientas_2.Application.UseCases
 {
-    internal class SupportUseCase
+    public class SupportUseCase
     {
         private ManageInventory manageInventory;
         private User currentUser;

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Clinica_Herramientas_2.Domain.Ports
 {
-    internal interface INurseVisit
+    public interface INurseVisit
     {
         public bool IsValidVitalData(VitalData vitalData);
         public void Save(NurseVisit nurseVisit);

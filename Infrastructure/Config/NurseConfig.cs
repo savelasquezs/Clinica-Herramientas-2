@@ -7,7 +7,7 @@ using Clinica_Herramientas_2.Domain.Services;
 
 namespace Clinica_Herramientas_2.Infrastructure.Config
 {
-    internal class NurseConfig
+    public class NurseConfig
     {
         // Puertos
         public INurseVisit NurseVisitPort { get; private set; }

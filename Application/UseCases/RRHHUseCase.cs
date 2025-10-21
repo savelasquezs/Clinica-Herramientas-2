@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Clinica_Herramientas_2.Application.UseCases
 {
-    internal class RRHHUseCase
+    public class RRHHUseCase
     {
         private CreateUser createUser;
         private UpdateUser updateUser;

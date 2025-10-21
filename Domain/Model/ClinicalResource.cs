@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Clinica_Herramientas_2.Domain.Model
 {
-    internal class ClinicalResource
+    public class ClinicalResource
     {
         private int id;
         private string name;
@@ -19,12 +19,15 @@ namespace Clinica_Herramientas_2.Domain.Model
             this.cost = cost;
         }
 
+        // Constructor protegido para EF Core
+        protected ClinicalResource() { }
+
         public int Id { get => id; private set => id = value; }
         public string Name { get => name; private set => name = value; }
         public decimal Cost { get => cost; private set => cost = value; }
     }
 
-    internal class Medication : ClinicalResource
+    public class Medication : ClinicalResource
     {
         private string dose;
         private int treatmentDuration;
@@ -36,10 +39,13 @@ namespace Clinica_Herramientas_2.Domain.Model
             treatmentDuration = treatmentDurationDays;
         }
 
+        // Constructor protegido para EF Core
+        protected Medication() { }
+
         public string Dose { get => dose; private set => dose = value; }
         public int TreatmentDuration { get => treatmentDuration; private set => treatmentDuration = value; }
     }
-    internal class Procedure : ClinicalResource
+    public class Procedure : ClinicalResource
     {
         private int frequency;
         private bool requiresSpecialist;
@@ -53,11 +59,14 @@ namespace Clinica_Herramientas_2.Domain.Model
             this.specialistTypeId = specialistTypeId;
         }
 
+        // Constructor protegido para EF Core
+        protected Procedure() { }
+
         public int Frequency { get => frequency; private set => frequency = value; }
         public bool RequiresSpecialist { get => requiresSpecialist; private set => requiresSpecialist = value; }
         public int? SpecialistTypeId { get => specialistTypeId; private set => specialistTypeId = value; }
     }
-    internal class DiagnosticAid : ClinicalResource
+    public class DiagnosticAid : ClinicalResource
     {
         private int quantity;
         private bool requiresSpecialist;
@@ -70,6 +79,9 @@ namespace Clinica_Herramientas_2.Domain.Model
             this.requiresSpecialist = requiresSpecialist;
             this.specialistTypeId = specialistTypeId;
         }
+
+        // Constructor protegido para EF Core
+        protected DiagnosticAid() { }
 
         public int Quantity { get => quantity; private set => quantity = value; }
         public bool RequiresSpecialist { get => requiresSpecialist; private set => requiresSpecialist = value; }

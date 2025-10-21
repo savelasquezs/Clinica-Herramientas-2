@@ -4,7 +4,7 @@ using Clinica_Herramientas_2.Domain.Model;
 
 namespace Clinica_Herramientas_2.Domain.Services
 {
-    internal class CreateNurseVisit(INurseVisit nurseVisitPort, IPatientPort patientPort, IUserPort userPort)
+    public class CreateNurseVisit(INurseVisit nurseVisitPort, IPatientPort patientPort, IUserPort userPort)
     {
         private readonly INurseVisit nurseVisitPort = nurseVisitPort;
         private readonly IPatientPort patientPort = patientPort;

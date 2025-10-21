@@ -5,7 +5,7 @@ using Clinica_Herramientas_2.Domain.Model;
 
 namespace Clinica_Herramientas_2.Application.Adapters.Input
 {
-    internal class AdminInputs
+    public class AdminInputs
     {
         private PatientBuilder patientBuilder;
         private AppointmentBuilder appointmentBuilder;

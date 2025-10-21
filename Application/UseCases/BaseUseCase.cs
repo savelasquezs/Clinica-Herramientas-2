@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Clinica_Herramientas_2.Application.UseCases
 {
-    internal abstract class BaseUseCase
+    public abstract class BaseUseCase
     {
         protected ViewPatientInformation viewPatientInformation;
         protected User currentUser;

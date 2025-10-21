@@ -2,8 +2,9 @@
 
 namespace Clinica_Herramientas_2.Domain.Model
 {
-    internal class PatientCareRecord
+    public class PatientCareRecord
     {
+        private int id;
         private readonly OrderItem orderItem;
         private readonly string testsPerformed;
         private readonly string notes;
@@ -18,8 +19,17 @@ namespace Clinica_Herramientas_2.Domain.Model
             this.notes = notes;
             this.performedAt = performedAt;
         }
+
+        // Constructor protegido para EF Core
+        protected PatientCareRecord() : this(null!, "", "", DateTime.MinValue) { }
+
+        public int Id { get => id; private set => id = value; }
+        public OrderItem OrderItem { get => orderItem; }
+        public string TestsPerformed { get => testsPerformed; }
+        public string Notes { get => notes; }
+        public DateTime PerformedAt { get => performedAt; }
     }
-    class AdministeredMedication : PatientCareRecord
+    public class AdministeredMedication : PatientCareRecord
     {
         private readonly Medication medication;
         private string dose;
@@ -36,11 +46,22 @@ namespace Clinica_Herramientas_2.Domain.Model
             this.administrationRoute = administrationRoute.Trim();
         }
 
+        // Constructor protegido para EF Core
+        protected AdministeredMedication() : base(null!, "", "", DateTime.MinValue) { }
+
+        public Medication Medication { get => medication; }
         public string Dose { get => dose; private set => dose = value; }
         public string AdministrationRoute { get => administrationRoute; private set => administrationRoute = value; }
     }
-    class PerformedProcedure(OrderItem orderItem, string testsPerformed, string notes, DateTime performedAt) : PatientCareRecord(orderItem, testsPerformed, notes, performedAt)
+    public class PerformedProcedure : PatientCareRecord
     {
+        public PerformedProcedure(OrderItem orderItem, string testsPerformed, string notes, DateTime performedAt) 
+            : base(orderItem, testsPerformed, notes, performedAt)
+        {
+        }
+
+        // Constructor protegido para EF Core
+        protected PerformedProcedure() : base(null!, "", "", DateTime.MinValue) { }
     }
 
 }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Clinica_Herramientas_2.Application.Adapters.Input
 {
-    internal class RRHHInputs
+    public class RRHHInputs
     {
         private UserBuilder userBuilder;
         private RRHHUseCase rrhhUseCase;

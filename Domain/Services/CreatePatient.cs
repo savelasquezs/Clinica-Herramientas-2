@@ -4,7 +4,7 @@ using Clinica_Herramientas_2.Domain.Model;
 
 namespace Clinica_Herramientas_2.Domain.Services
 {
-    class CreatePatient( IPatientPort patientPort)
+    public class CreatePatient( IPatientPort patientPort)
     {
         private readonly IPatientPort patientPort = patientPort;
 

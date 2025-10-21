@@ -1,6 +1,6 @@
 ﻿namespace Clinica_Herramientas_2.Domain.Model
 {
-    internal class Invoice
+    public class Invoice
     {
         private int invoiceNumber;
         private Patient patient;
@@ -32,6 +32,9 @@
             this.insuranceAmount = 0;
             this.annualCopaymentAccumulated = 0;
         }
+
+        // Constructor protegido para EF Core
+        protected Invoice() { }
 
         public int InvoiceNumber { get => invoiceNumber; private set => invoiceNumber = value; }
         public DateTime InvoiceDate { get => invoiceDate; private set => invoiceDate = value; }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Clinica_Herramientas_2.Domain.Ports
 {
-    internal interface IAppointmentPort
+    public interface IAppointmentPort
     {
 
         public void SaveAppointment(Appointment appointment);

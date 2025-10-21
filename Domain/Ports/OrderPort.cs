@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Clinica_Herramientas_2.Domain.Ports
 {
-    internal interface IOrderPort
+    public interface IOrderPort
     {
         public Order FindByNumber(int orderNumber);
         public List<Order> FindByPatientDni(string patientDni);

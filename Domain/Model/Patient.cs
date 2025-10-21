@@ -1,19 +1,29 @@
 ﻿namespace Clinica_Herramientas_2.Domain.Model
 {
-    enum Gender
+    public enum Gender
     {
         Male, Female, Other
     }
-    internal class Patient(string fullname, string dni, string email, string phonenumber, DateOnly birthdate, string address,
+    public class Patient(string fullname, string dni, string email, string phonenumber, DateOnly birthdate, string address,
         Gender gender, EmergencyContact emergencyContact, HealthInsurance insurance) : Person(fullname, dni, email, phonenumber, birthdate, address)
     {
         private Gender gender = gender;
         private EmergencyContact emergencyContact = emergencyContact ?? throw new ArgumentNullException(nameof(emergencyContact), "Debe registrar un contacto de emergencia.");
         private HealthInsurance insurance = insurance;
 
+        // Constructor protegido para EF Core
+        protected Patient() : this("", "", "", "", DateOnly.MinValue, "", Gender.Male, null!, null!) { }
+
         public HealthInsurance Insurance { get => insurance; private set => insurance = value; }
         internal Gender Gender { get => gender; private set => gender = value; }
         internal EmergencyContact EmergencyContact { get => emergencyContact; private set => emergencyContact = value; }
+        
+        // Propiedades de navegación
+        public ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
+        public ICollection<MedicalRecord> MedicalRecords { get; set; } = new List<MedicalRecord>();
+        public ICollection<NurseVisit> NurseVisits { get; set; } = new List<NurseVisit>();
+        public ICollection<Invoice> Invoices { get; set; } = new List<Invoice>();
+        
         public void UpdateBasicInfo(string email, string phone, string address)
         {
             SetEmail(email);
@@ -22,7 +32,7 @@
         }
     }
 
-    class EmergencyContact
+    public class EmergencyContact
     {
         private string firtname;
         private string lastname;
@@ -36,6 +46,9 @@
             this.relationship = relationship.Trim();
             this.phoneNumber = phoneNumber.Trim();
         }
+
+        // Constructor protegido para EF Core
+        protected EmergencyContact() { }
 
         public string Firtname { get => firtname; private set => firtname = value; }
         public string Lastname { get => lastname; private set => lastname = value; }
@@ -57,6 +70,9 @@
             _isActive = isActive;
             _expirationDate = expirationDate;
         }
+
+        // Constructor protegido para EF Core
+        protected HealthInsurance() { }
 
         public string CompanyName { get => _companyName; private set => _companyName = value; }
         public string PolicyNumber { get => _policyNumber; private set => _policyNumber = value; }

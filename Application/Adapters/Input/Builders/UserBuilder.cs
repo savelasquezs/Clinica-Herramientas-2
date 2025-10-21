@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Clinica_Herramientas_2.Application.Adapters.Input.Builders
 {
-    internal class UserBuilder
+    public class UserBuilder
     {
         private PersonValidator personValidator;
         private UserValidator userValidator;

@@ -7,7 +7,7 @@ using Clinica_Herramientas_2.Domain.Model;
 
 namespace Clinica_Herramientas_2.Domain.Services
 {
-    internal class BillingRulesService
+    public class BillingRulesService
     {
         public static BillingCalculationResult CalculateBilling(Patient patient, decimal totalAmount, decimal annualCopaymentAccumulated)
         {

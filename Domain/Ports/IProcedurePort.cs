@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Clinica_Herramientas_2.Domain.Ports
 {
-    internal interface IProcedurePort
+    public interface IProcedurePort
     {
         Procedure FindById(int id);
         void Save(Procedure procedure);

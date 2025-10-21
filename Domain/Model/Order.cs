@@ -9,7 +9,7 @@ namespace Clinica_Herramientas_2.Domain.Model
   
 
 
-internal class Order
+public class Order
     {
         private int orderNumber;
         private DateTime creationDate;
@@ -28,6 +28,9 @@ internal class Order
 
             // Reglas cross-item se validarán en el servicio de reglas.
         }
+
+        // Constructor protegido para EF Core
+        protected Order() { }
 
         public int OrderNumber { get => orderNumber; private set => orderNumber = value; }
         public DateTime CreationDate { get => creationDate; private set => creationDate = value; }

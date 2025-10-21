@@ -7,7 +7,7 @@ using Clinica_Herramientas_2.Domain.Model;
 
 namespace Clinica_Herramientas_2.Domain.Services
 {
-    internal class OrderRulesService
+    public class OrderRulesService
     {
         public static void ValidateOrder(Order order)
         {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Clinica_Herramientas_2.Domain.Ports
 {
-    internal interface IDiagnosticAidPort
+    public interface IDiagnosticAidPort
     {
         DiagnosticAid FindById(int id);
         void Save(DiagnosticAid aid);

@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Clinica_Herramientas_2.Domain.Model
 {
-    internal class MedicalRecord(DateTime date, Patient patient, User doctor, string consultationReason, string symptoms, string diagnosis, Order order)
+    public class MedicalRecord(DateTime date, Patient patient, User doctor, string consultationReason, string symptoms, string diagnosis, Order order)
     {
+        private int id;
         private DateTime date = date;
         private Patient patient = patient;
         private User doctor = doctor;
@@ -16,6 +17,10 @@ namespace Clinica_Herramientas_2.Domain.Model
         private string diagnosis = diagnosis;
         private Order order = order;
 
+        // Constructor protegido para EF Core
+        protected MedicalRecord() : this(DateTime.MinValue, null!, null!, "", "", "", null!) { }
+
+        public int Id { get => id; private set => id = value; }
         public DateTime Date { get => date; set => date = value; }
         public string ConsultationReason { get => consultationReason; set => consultationReason = value; }
         public string Symptoms { get => symptoms; set => symptoms = value; }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Clinica_Herramientas_2.Domain.Services
 {
-    class CreateUser(IUserPort userPort)
+    public class CreateUser(IUserPort userPort)
     {
         private readonly IUserPort userPort=userPort;
 

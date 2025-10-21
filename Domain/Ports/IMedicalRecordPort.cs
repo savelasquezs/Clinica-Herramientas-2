@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Clinica_Herramientas_2.Domain.Ports
 {
-    internal interface IMedicalRecordPort
+    public interface IMedicalRecordPort
     {
         void Save(MedicalRecord medicalRecord);
         MedicalRecord FindById(int id);

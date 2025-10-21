@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Clinica_Herramientas_2.Application.UseCases
 {
-    internal class NurseUseCase : BaseUseCase
+    public class NurseUseCase : BaseUseCase
     {
         private CreateNurseVisit createNurseVisit;
 

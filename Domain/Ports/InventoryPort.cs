@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Clinica_Herramientas_2.Domain.Ports
 {
-    internal interface IInventoryPort
+    public interface IInventoryPort
     {
         public Medication FindMedicationById(int id);
         public Procedure FindProcedureById(int id);
