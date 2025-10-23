@@ -59,5 +59,10 @@ namespace Clinica_Herramientas_2.Infrastructure.Adapters.Output.Persistence
         {
             return context.Users.FirstOrDefault(u => u.Email == user.Email);
         }
+        
+        public User? FindByUsername(string username)
+        {
+            return context.Users.FirstOrDefault(u => u.Username == username);
+        }
     }
 }

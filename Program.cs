@@ -2,12 +2,15 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using Clinica_Herramientas_2.Infrastructure.Adapters.Output.Persistence;
 using Clinica_Herramientas_2.Infrastructure.Config;
+using Clinica_Herramientas_2.Infrastructure.GUI.Auth;
 using System.Windows.Forms;
 
 namespace Clinica_Herramientas_2
 {
     internal static class Program
     {
+        public static Config Config { get; private set; }
+        
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
@@ -34,10 +37,10 @@ namespace Clinica_Herramientas_2
             using var dbContext = new ClinicaDbContext(optionsBuilder.Options);
             
             // Crear Config
-            var config = new Config(dbContext);
+            Config = new Config(dbContext);
             
-            // Iniciar aplicación
-            System.Windows.Forms.Application.Run(new Form1(config));
+            // Iniciar aplicación con LoginForm
+            System.Windows.Forms.Application.Run(new LoginForm(Config));
         }
     }
 }

@@ -12,6 +12,7 @@ namespace Clinica_Herramientas_2.Infrastructure.Config
         public NurseConfig NurseConfig => configFactory.NurseConfig;
         public RRHHConfig RRHHConfig => configFactory.RRHHConfig;
         public SupportConfig SupportConfig => configFactory.SupportConfig;
+        public AuthConfig AuthConfig => configFactory.AuthConfig;
         
         public Config(ClinicaDbContext dbContext)
         {

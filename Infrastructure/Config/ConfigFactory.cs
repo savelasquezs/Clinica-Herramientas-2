@@ -12,6 +12,7 @@ namespace Clinica_Herramientas_2.Infrastructure.Config
         private NurseConfig? nurseConfig;
         private RRHHConfig? rrhhConfig;
         private SupportConfig? supportConfig;
+        private AuthConfig? authConfig;
         
         public ConfigFactory(PortsFactory ports)
         {
@@ -40,6 +41,10 @@ namespace Clinica_Herramientas_2.Infrastructure.Config
         public SupportConfig SupportConfig => supportConfig ??= new SupportConfig(
             ports.MedicationPort, ports.ProcedurePort,
             ports.DiagnosticAidPort, ports.InventoryPort
+        );
+        
+        public AuthConfig AuthConfig => authConfig ??= new AuthConfig(
+            ports.UserPort
         );
     }
 }
