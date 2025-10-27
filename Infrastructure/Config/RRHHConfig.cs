@@ -3,11 +3,7 @@ using Clinica_Herramientas_2.Application.Adapters.Input.Builders;
 using Clinica_Herramientas_2.Application.UseCases;
 using Clinica_Herramientas_2.Domain.Ports;
 using Clinica_Herramientas_2.Domain.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Clinica_Herramientas_2.Infrastructure.Config
 {
