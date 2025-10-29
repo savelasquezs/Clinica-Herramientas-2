@@ -1,5 +1,4 @@
-
-sssssassaassszzzzzzzzzzzzzzzxzx              d  bn  nbb nhhb                                                                                                                         hbbbbbbbbbb                                b<vvbv nbn vbnvb vn nvbnamespace Clinica_Herramientas_2.Infrastructure.GUI.RRHH.Users
+namespace Clinica_Herramientas_2.Infrastructure.GUI.RRHH.Users
 {
     partial class UserCreateForm
     {
