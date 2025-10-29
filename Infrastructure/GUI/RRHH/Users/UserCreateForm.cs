@@ -16,7 +16,7 @@ namespace Clinica_Herramientas_2.Infrastructure.GUI.RRHH.Users
             this.rrhhInputs = rrhhInputs;
             InitializeComponent();
             LoadRoles();
-            dtpBirthdate.MaxDate = DateTime.Today;
+        
         }
 
         private void LoadRoles()
