@@ -49,7 +49,8 @@ namespace Clinica_Herramientas_2.Infrastructure.Config
             // Input
             RRHHInputs = new RRHHInputs(
                 UserBuilder,
-                RRHHUseCase
+                RRHHUseCase,
+                UserPort
             );
         }
     }

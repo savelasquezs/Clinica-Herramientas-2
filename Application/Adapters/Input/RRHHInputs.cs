@@ -1,6 +1,7 @@
 using Clinica_Herramientas_2.Application.Adapters.Input.Builders;
 using Clinica_Herramientas_2.Application.UseCases;
 using Clinica_Herramientas_2.Domain.Model;
+using Clinica_Herramientas_2.Domain.Ports;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,13 +14,16 @@ namespace Clinica_Herramientas_2.Application.Adapters.Input
     {
         private UserBuilder userBuilder;
         private RRHHUseCase rrhhUseCase;
+        private IUserPort userPort;
         
         public RRHHInputs(
             UserBuilder userBuilder,
-            RRHHUseCase rrhhUseCase)
+            RRHHUseCase rrhhUseCase,
+            IUserPort userPort)
         {
             this.userBuilder = userBuilder;
             this.rrhhUseCase = rrhhUseCase;
+            this.userPort = userPort;
         }
         
         public void CreateUser(string fullname, string dni, string email, string phonenumber, DateOnly birthdate, string address, Role role, string username, string password)
@@ -39,6 +43,17 @@ namespace Clinica_Herramientas_2.Application.Adapters.Input
         public void DeleteUser(User userToDelete)
         {
             rrhhUseCase.DeleteExistingUser(userToDelete);
+        }
+
+        public List<User> GetAllUsers()
+        {
+            // Acceso de solo lectura a través del puerto
+            return userPort.FindAll();
+        }
+
+        public User? FindByUsername(string username)
+        {
+            return userPort.FindByUsername(username);
         }
     }
 }

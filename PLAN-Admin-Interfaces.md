@@ -153,30 +153,82 @@ Componentes:
 
 ### Crear InvoiceManagementForm.cs
 
-Funcionalidad basada en `AdminUseCase.CreateNewInvoice`:
+Funcionalidad basada en `AdminUseCase.CreateNewInvoice` y `CreateInvoice.Create`:
 ```csharp
 - Constructor recibe: User currentUser, AdminConfig adminConfig
 - Formulario para crear factura con campos:
-  * Número de factura (int)
-  * DNI del paciente (TextBox)
-  * DNI del doctor (TextBox)
-  * Números de órdenes (TextBox para lista separada por comas)
+  * Número de factura (int) - Validar que sea único
+  * DNI del paciente (TextBox con validación de existencia)
+  * DNI del doctor (TextBox con validación que sea Doctor)
+  * Números de órdenes (TextBox para ingresar números separados por comas, ej: "1,2,3")
   * Fecha de factura (DateTimePicker)
-- Método CreateInvoice() que llama AdminUseCase.CreateNewInvoice()
-- Mostrar resultado con detalles de copago y seguro
-- Panel de vista previa con información calculada
+- Método CreateInvoice() que:
+  1. Divide el string de números de órdenes en List<int>
+  2. Llama AdminUseCase.CreateNewInvoice(invoiceNumber, patientDni, doctorDni, orderNumbers, invoiceDate)
+  3. Esta llamada interna ejecuta la lógica completa:
+     - Valida que paciente existe
+     - Valida que doctor existe y tiene rol Doctor
+     - Obtiene todas las órdenes por número
+     - Crea la factura
+     - Calcula totalAmount sumando todos los costs de los items de las órdenes
+     - Calcula copago anual acumulado
+     - Si la póliza está inactiva o vencida: Copago = Total, Seguro = 0
+     - Si copago anual >= $1,000,000: Copago = 0, Seguro = Total
+     - Si no: Copago = Min($50,000, Total), Seguro = Total - Copago
+     - Actualiza copago anual acumulado
+     - Guarda la factura
+     - Retorna Invoice con todos los cálculos
+
+- Mostrar resultado con:
+  * Total de la factura (suma de costs de todos los items)
+  * Copago a cargo del paciente
+  * Monto cubierto por seguro
+  * Copago anual acumulado
+  * Información del paciente (nombre, seguro, póliza)
+  * Información del doctor
+- Panel de vista previa con todos los detalles antes de confirmar
+- Validaciones antes de crear:
+  - Número de factura único
+  - Paciente existe
+  - Doctor existe y es Doctor
+  - Todas las órdenes existen
+  - Todos los campos requeridos completos
 ```
 
 ### Crear InvoiceManagementForm.Designer.cs
 
 Componentes:
 - GroupBox "Nueva Factura" con:
-  - TextBox: Número de factura, DNI paciente, DNI doctor, Números de órdenes
+  - TextBox: Número de factura
+  - TextBox: DNI del paciente (con validación)
+  - Label: Nombre del paciente (actualizado cuando se busca)
+  - TextBox: DNI del doctor (con validación)
+  - Label: Nombre del doctor (actualizado cuando se busca)
+  - TextBox: Números de órdenes (separadas por comas)
   - DateTimePicker: Fecha de factura
+  - Button: "Validar Órdenes" (verifica que todas existan)
   - Button: "Generar Factura"
+  
 - GroupBox "Vista Previa" con:
-  - Labels para mostrar: Total, Copago, Monto Seguro, Copago Anual Acumulado
-- DataGridView para facturas existentes (si disponible)
+  - Label: Total de la factura
+  - Label: Copago a cargo del paciente
+  - Label: Monto cubierto por seguro
+  - Label: Copago anual acumulado
+  - GroupBox "Información del Paciente":
+    - Label: Nombre, DNI, Email, Seguro
+  - GroupBox "Información del Doctor":
+    - Label: Nombre, DNI
+  - GroupBox "Detalle de Órdenes":
+    - DataGridView con: Número orden, Tipo item, Nombre, Costo
+
+- DataGridView para facturas existentes con columnas:
+  - Número factura
+  - Paciente
+  - Doctor
+  - Fecha
+  - Total
+  - Copago
+  - Seguro
 
 ## Diseño Visual Aplicado
 

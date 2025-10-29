@@ -5,6 +5,7 @@ using Clinica_Herramientas_2.Infrastructure.GUI.Doctor;
 using Clinica_Herramientas_2.Infrastructure.GUI.Nurse;
 using Clinica_Herramientas_2.Infrastructure.GUI.RRHH;
 using Clinica_Herramientas_2.Infrastructure.GUI.Support;
+using Clinica_Herramientas_2.Application.Adapters.Input;
 
 namespace Clinica_Herramientas_2.Infrastructure.GUI.Auth
 {
@@ -45,7 +46,7 @@ namespace Clinica_Herramientas_2.Infrastructure.GUI.Auth
                     Role.Admin => new AdminMainForm(user),
                     Role.Doctor => new DoctorMainForm(user),
                     Role.Nurse => new NurseMainForm(user),
-                    Role.RRHH => new RRHHMainForm(user),
+                    Role.RRHH => new RRHHMainForm(Program.Config.RRHHConfig.RRHHInputs, user),
                     Role.Support => new SupportMainForm(user),
                     _ => throw new Exception("Rol no válido")
                 };

@@ -14,6 +14,7 @@ namespace Clinica_Herramientas_2.Domain.Ports
         public User? FindByUserName(User user);
         public User? FindByEmail(User user);
         public User? FindByUsername(string username);
+        public List<User> FindAll();
         public void Save(User user);
         public void Update(User user);
         public void Delete(User user);
