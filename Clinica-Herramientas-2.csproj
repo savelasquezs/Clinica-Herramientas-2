@@ -1,0 +1,5 @@
+<ItemGroup>
+  <None Include="appsettings.json">
+    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+  </None>
+</ItemGroup>
