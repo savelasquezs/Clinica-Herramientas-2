@@ -14,64 +14,126 @@ namespace Clinica_Herramientas_2.Infrastructure.GUI.Nurse
 
         private void InitializeComponent()
         {
-            this.lblWelcome = new System.Windows.Forms.Label();
-            this.lblRole = new System.Windows.Forms.Label();
-            this.lblUserName = new System.Windows.Forms.Label();
-            this.btnLogout = new System.Windows.Forms.Button();
-            this.SuspendLayout();
-            
-            this.lblWelcome.AutoSize = true;
-            this.lblWelcome.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblWelcome.Location = new System.Drawing.Point(50, 50);
-            this.lblWelcome.Name = "lblWelcome";
-            this.lblWelcome.Size = new System.Drawing.Size(200, 24);
-            this.lblWelcome.TabIndex = 0;
-            this.lblWelcome.Text = "Bienvenida, Usuario";
-            
-            this.lblRole.AutoSize = true;
-            this.lblRole.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblRole.Location = new System.Drawing.Point(50, 100);
-            this.lblRole.Name = "lblRole";
-            this.lblRole.Size = new System.Drawing.Size(120, 20);
-            this.lblRole.TabIndex = 1;
-            this.lblRole.Text = "Rol: Enfermera";
-            
-            this.lblUserName.AutoSize = true;
-            this.lblUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblUserName.Location = new System.Drawing.Point(50, 130);
-            this.lblUserName.Name = "lblUserName";
-            this.lblUserName.Size = new System.Drawing.Size(150, 20);
-            this.lblUserName.TabIndex = 2;
-            this.lblUserName.Text = "Usuario: Nombre";
-            
-            this.btnLogout.Location = new System.Drawing.Point(200, 200);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(100, 30);
-            this.btnLogout.TabIndex = 3;
-            this.btnLogout.Text = "Cerrar Sesión";
-            this.btnLogout.UseVisualStyleBackColor = true;
-            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
-            
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(400, 300);
-            this.Controls.Add(this.btnLogout);
-            this.Controls.Add(this.lblUserName);
-            this.Controls.Add(this.lblRole);
-            this.Controls.Add(this.lblWelcome);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "NurseMainForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Panel de Enfermera";
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            lblWelcome = new Label();
+            lblRole = new Label();
+            lblUserName = new Label();
+            btnLogout = new Button();
+            btnViewPatients = new Button();
+            btnRegisterPatient = new Button();
+            btnMedicalRecords = new Button();
+            panel1 = new Panel();
+            panel1.SuspendLayout();
+            SuspendLayout();
+            // 
+            // lblWelcome
+            // 
+            lblWelcome.AutoSize = true;
+            lblWelcome.Font = new Font("Microsoft Sans Serif", 14F, FontStyle.Bold);
+            lblWelcome.Location = new Point(76, 80);
+            lblWelcome.Name = "lblWelcome";
+            lblWelcome.Size = new Size(197, 24);
+            lblWelcome.TabIndex = 0;
+            lblWelcome.Text = "Bienvenida, Usuario";
+            // 
+            // lblRole
+            // 
+            lblRole.AutoSize = true;
+            lblRole.Font = new Font("Microsoft Sans Serif", 12F);
+            lblRole.Location = new Point(76, 130);
+            lblRole.Name = "lblRole";
+            lblRole.Size = new Size(116, 20);
+            lblRole.TabIndex = 1;
+            lblRole.Text = "Rol: Enfermera";
+            // 
+            // lblUserName
+            // 
+            lblUserName.AutoSize = true;
+            lblUserName.Font = new Font("Microsoft Sans Serif", 12F);
+            lblUserName.Location = new Point(76, 160);
+            lblUserName.Name = "lblUserName";
+            lblUserName.Size = new Size(128, 20);
+            lblUserName.TabIndex = 2;
+            lblUserName.Text = "Usuario: Nombre";
+            // 
+            // btnLogout
+            // 
+            btnLogout.Location = new Point(156, 507);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(100, 30);
+            btnLogout.TabIndex = 6;
+            btnLogout.Text = "Cerrar Sesión";
+            btnLogout.UseVisualStyleBackColor = true;
+            btnLogout.Click += btnLogout_Click;
+            // 
+            // btnViewPatients
+            // 
+            btnViewPatients.Location = new Point(122, 338);
+            btnViewPatients.Name = "btnViewPatients";
+            btnViewPatients.Size = new Size(180, 36);
+            btnViewPatients.TabIndex = 3;
+            btnViewPatients.Text = "Visualizar Pacientes";
+            btnViewPatients.UseVisualStyleBackColor = true;
+            btnViewPatients.Click += btnViewPatients_Click;
+            // 
+            // btnRegisterPatient
+            // 
+            btnRegisterPatient.Location = new Point(122, 262);
+            btnRegisterPatient.Name = "btnRegisterPatient";
+            btnRegisterPatient.Size = new Size(180, 36);
+            btnRegisterPatient.TabIndex = 4;
+            btnRegisterPatient.Text = "Registrar Pacientes";
+            btnRegisterPatient.UseVisualStyleBackColor = true;
+            btnRegisterPatient.Click += btnRegisterPatient_Click;
+            // 
+            // btnMedicalRecords
+            // 
+            btnMedicalRecords.Location = new Point(122, 425);
+            btnMedicalRecords.Name = "btnMedicalRecords";
+            btnMedicalRecords.Size = new Size(180, 36);
+            btnMedicalRecords.TabIndex = 5;
+            btnMedicalRecords.Text = "Registros Médicos";
+            btnMedicalRecords.UseVisualStyleBackColor = true;
+            btnMedicalRecords.Click += btnMedicalRecords_Click;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.Brown;
+            panel1.Controls.Add(btnMedicalRecords);
+            panel1.Controls.Add(lblWelcome);
+            panel1.Controls.Add(btnRegisterPatient);
+            panel1.Controls.Add(lblRole);
+            panel1.Controls.Add(btnViewPatients);
+            panel1.Controls.Add(lblUserName);
+            panel1.Controls.Add(btnLogout);
+            panel1.Location = new Point(-16, -25);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(397, 635);
+            panel1.TabIndex = 7;
+            // 
+            // NurseMainForm
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(1349, 581);
+            Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "NurseMainForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Panel de Enfermera";
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ResumeLayout(false);
         }
 
         private System.Windows.Forms.Label lblWelcome;
         private System.Windows.Forms.Label lblRole;
         private System.Windows.Forms.Label lblUserName;
         private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.Button btnViewPatients;
+        private System.Windows.Forms.Button btnRegisterPatient;
+        private System.Windows.Forms.Button btnMedicalRecords;
+        private Panel panel1;
     }
 }

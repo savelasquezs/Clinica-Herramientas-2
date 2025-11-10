@@ -14,12 +14,9 @@
     <Folder Include="Infrastructure\Adapters\Output\Persistence\Configurations\" />
     <Folder Include="Infrastructure\GUI\Admin\Appointments\" />
     <Folder Include="Infrastructure\GUI\Admin\Invoices\" />
-    <Folder Include="Infrastructure\GUI\Admin\Patients\" />
-    <Folder Include="Infrastructure\GUI\Auth\" />
     <Folder Include="Infrastructure\GUI\Doctor\MedicalRecords\" />
     <Folder Include="Infrastructure\GUI\Doctor\Orders\" />
     <Folder Include="Infrastructure\GUI\Nurse\Visits\" />
-    <Folder Include="Infrastructure\GUI\RRHH\Users\" />
     <Folder Include="Infrastructure\GUI\Support\Inventory\" />
   </ItemGroup>
 
