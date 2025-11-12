@@ -20,7 +20,8 @@ namespace Clinica_Herramientas_2.Infrastructure.GUI.RRHH.Users
             InitializeComponent();
             SetupDataGridView();
             LoadUsers();
-            // Si se requiere, el UseCase puede validar usuario en otra capa
+            // Establecer el usuario actual en el use case
+            rrhhInputs.SetCurrentUser(currentUser);
         }
 
         private void SetupDataGridView()
@@ -126,12 +127,10 @@ namespace Clinica_Herramientas_2.Infrastructure.GUI.RRHH.Users
         {
             try
             {
-                var createForm = new UserCreateForm(rrhhInputs);
+                var createForm = new UserCreateForm(rrhhInputs, currentUser);
                 if (createForm.ShowDialog() == DialogResult.OK)
                 {
                     LoadUsers();
-                    MessageBox.Show("Usuario creado exitosamente", "Éxito", 
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
@@ -199,6 +198,8 @@ namespace Clinica_Herramientas_2.Infrastructure.GUI.RRHH.Users
             {
                 try
                 {
+                    // Asegurar que el usuario actual esté establecido
+                    rrhhInputs.SetCurrentUser(currentUser);
                     rrhhInputs.DeleteUser(selectedUser);
                     LoadUsers();
                     MessageBox.Show("Usuario eliminado exitosamente", "Éxito", 

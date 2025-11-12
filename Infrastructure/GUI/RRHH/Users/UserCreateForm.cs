@@ -10,13 +10,14 @@ namespace Clinica_Herramientas_2.Infrastructure.GUI.RRHH.Users
     public partial class UserCreateForm : Form
     {
         private readonly RRHHInputs rrhhInputs;
+        private readonly User currentUser;
 
-        public UserCreateForm(RRHHInputs rrhhInputs)
+        public UserCreateForm(RRHHInputs rrhhInputs, User currentUser)
         {
             this.rrhhInputs = rrhhInputs;
+            this.currentUser = currentUser;
             InitializeComponent();
             LoadRoles();
-        
         }
 
         private void LoadRoles()
@@ -27,7 +28,7 @@ namespace Clinica_Herramientas_2.Infrastructure.GUI.RRHH.Users
 
         private Role GetSelectedRole()
         {
-            return cmbRole.SelectedItem.ToString() switch
+            return cmbRole.SelectedItem?.ToString() switch
             {
                 "Admin" => Role.Admin,
                 "Doctor" => Role.Doctor,
@@ -73,6 +74,9 @@ namespace Clinica_Herramientas_2.Infrastructure.GUI.RRHH.Users
                     return;
                 }
 
+                // Establecer el usuario actual antes de crear
+                rrhhInputs.SetCurrentUser(currentUser);
+                
                 // Crear el nuevo usuario
                 var birthdate = DateOnly.FromDateTime(dtpBirthdate.Value);
                 var role = GetSelectedRole();

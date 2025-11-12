@@ -131,16 +131,11 @@ namespace Clinica_Herramientas_2.Infrastructure.GUI.Admin.Patients
 
         private void btnNew_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Funcionalidad de crear paciente - Próximamente", "Información", 
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
-            // TODO: Implementar PatientCreateForm
-            // var createForm = new PatientCreateForm(adminConfig);
-            // if (createForm.ShowDialog() == DialogResult.OK)
-            // {
-            //     LoadPatients();
-            //     MessageBox.Show("Paciente creado exitosamente", "Éxito", 
-            //         MessageBoxButtons.OK, MessageBoxIcon.Information);
-            // }
+            var createForm = new PatientCreateForm(adminConfig, currentUser);
+            if (createForm.ShowDialog() == DialogResult.OK)
+            {
+                LoadPatients();
+            }
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -152,17 +147,12 @@ namespace Clinica_Herramientas_2.Infrastructure.GUI.Admin.Patients
                 return;
             }
 
-            MessageBox.Show("Funcionalidad de editar paciente - Próximamente", "Información", 
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
-            // TODO: Implementar PatientEditForm
-            // var selectedPatient = (Patient)dgvPatients.SelectedRows[0].DataBoundItem;
-            // var editForm = new PatientEditForm(selectedPatient, adminConfig);
-            // if (editForm.ShowDialog() == DialogResult.OK)
-            // {
-            //     LoadPatients();
-            //     MessageBox.Show("Paciente actualizado exitosamente", "Éxito", 
-            //         MessageBoxButtons.OK, MessageBoxIcon.Information);
-            // }
+            var selectedPatient = (Patient)dgvPatients.SelectedRows[0].DataBoundItem;
+            var editForm = new PatientEditForm(selectedPatient, adminConfig, currentUser);
+            if (editForm.ShowDialog() == DialogResult.OK)
+            {
+                LoadPatients();
+            }
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
