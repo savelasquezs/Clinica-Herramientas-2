@@ -26,6 +26,11 @@ namespace Clinica_Herramientas_2.Application.Adapters.Input
             this.userPort = userPort;
         }
         
+        public void SetCurrentUser(User user)
+        {
+            rrhhUseCase.SetCurrentUser(user);
+        }
+
         public void CreateUser(string fullname, string dni, string email, string phonenumber, DateOnly birthdate, string address, Role role, string username, string password)
         {
             // Usar builder para crear usuario

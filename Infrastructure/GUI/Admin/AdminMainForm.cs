@@ -1,6 +1,8 @@
 using Clinica_Herramientas_2.Domain.Model;
 using Clinica_Herramientas_2.Infrastructure.GUI.Auth;
 using Clinica_Herramientas_2.Infrastructure.GUI.Admin.Patients;
+using Clinica_Herramientas_2.Infrastructure.GUI.Admin.Appointments;
+using Clinica_Herramientas_2.Infrastructure.GUI.Admin.Invoices;
 
 namespace Clinica_Herramientas_2.Infrastructure.GUI.Admin
 {
@@ -14,6 +16,8 @@ namespace Clinica_Herramientas_2.Infrastructure.GUI.Admin
             this.currentUser = user;
             InitializeComponent();
             LoadUserInfo();
+            // Establecer el usuario actual en el use case
+            Program.Config.AdminConfig.AdminUseCase.SetCurrentUser(user);
         }
 
         private void LoadUserInfo()
@@ -49,20 +53,14 @@ namespace Clinica_Herramientas_2.Infrastructure.GUI.Admin
 
         private void btnAppointments_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Funcionalidad de citas médicas - Próximamente", "Información", 
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
-            // TODO: Implementar AppointmentManagementForm
-            // var appointmentForm = new AppointmentManagementForm(currentUser, Program.Config.AdminConfig);
-            // OpenChildForm(appointmentForm);
+            var appointmentForm = new Appointments.AppointmentManagementForm(Program.Config.AdminConfig, currentUser);
+            OpenChildForm(appointmentForm);
         }
 
         private void btnInvoices_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Funcionalidad de facturación - Próximamente", "Información", 
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
-            // TODO: Implementar InvoiceManagementForm
-            // var invoiceForm = new InvoiceManagementForm(currentUser, Program.Config.AdminConfig);
-            // OpenChildForm(invoiceForm);
+            var invoiceForm = new Invoices.InvoiceManagementForm(Program.Config.AdminConfig, currentUser);
+            OpenChildForm(invoiceForm);
         }
 
         private void btnLogout_Click(object sender, EventArgs e)

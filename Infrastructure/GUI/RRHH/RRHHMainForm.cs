@@ -18,6 +18,8 @@ namespace Clinica_Herramientas_2.Infrastructure.GUI.RRHH
             this.rrhhInputs = rrhhInputs;
             InitializeComponent();
             LoadUserInfo();
+            // Establecer el usuario actual en el use case
+            rrhhInputs.SetCurrentUser(user);
         }
 
         private void LoadUserInfo()
