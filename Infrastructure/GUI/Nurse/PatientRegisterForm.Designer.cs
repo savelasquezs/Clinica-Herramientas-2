@@ -1,27 +1,26 @@
-﻿using System;
-using System.ComponentModel;
-using System.Drawing;
-using System.Windows.Forms;
-
-namespace Clinica_Herramientas_2.Infrastructure.GUI.Nurse
+﻿namespace Clinica_Herramientas_2.Infrastructure.GUI.Nurse
 {
     partial class PatientRegisterForm
     {
         private System.ComponentModel.IContainer components = null;
-        private Label lblPatientId;
-        private TextBox txtPatientId;
-        private Label lblPatientName;
-        private TextBox txtPatientName;
-        private Label lblBloodPressure;
-        private TextBox txtBloodPressure;
-        private Label lblTemperature;
-        private TextBox txtTemperature;
-        private Label lblPulse;
-        private TextBox txtPulse;
-        private Label lblOxygenLevel;
-        private TextBox txtOxygenLevel;
-        private Button btnSave;
-        private Button btnCancel;
+        private System.Windows.Forms.Panel pnlHeader;
+        private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.GroupBox grpPatientInfo;
+        private System.Windows.Forms.Label lblPatientId;
+        private System.Windows.Forms.TextBox txtPatientId;
+        private System.Windows.Forms.Label lblPatientName;
+        private System.Windows.Forms.TextBox txtPatientName;
+        private System.Windows.Forms.GroupBox grpVitals;
+        private System.Windows.Forms.Label lblBloodPressure;
+        private System.Windows.Forms.TextBox txtBloodPressure;
+        private System.Windows.Forms.Label lblTemperature;
+        private System.Windows.Forms.TextBox txtTemperature;
+        private System.Windows.Forms.Label lblPulse;
+        private System.Windows.Forms.TextBox txtPulse;
+        private System.Windows.Forms.Label lblOxygenLevel;
+        private System.Windows.Forms.TextBox txtOxygenLevel;
+        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnCancel;
 
         protected override void Dispose(bool disposing)
         {
@@ -34,188 +33,224 @@ namespace Clinica_Herramientas_2.Infrastructure.GUI.Nurse
 
         private void InitializeComponent()
         {
-            lblPatientId = new Label();
-            txtPatientId = new TextBox();
-            lblPatientName = new Label();
-            txtPatientName = new TextBox();
-            lblBloodPressure = new Label();
-            txtBloodPressure = new TextBox();
-            lblTemperature = new Label();
-            txtTemperature = new TextBox();
-            lblPulse = new Label();
-            txtPulse = new TextBox();
-            lblOxygenLevel = new Label();
-            txtOxygenLevel = new TextBox();
-            btnSave = new Button();
-            btnCancel = new Button();
-            label1 = new Label();
-            SuspendLayout();
-            // 
+            this.pnlHeader = new System.Windows.Forms.Panel();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.grpPatientInfo = new System.Windows.Forms.GroupBox();
+            this.lblPatientId = new System.Windows.Forms.Label();
+            this.txtPatientId = new System.Windows.Forms.TextBox();
+            this.lblPatientName = new System.Windows.Forms.Label();
+            this.txtPatientName = new System.Windows.Forms.TextBox();
+            this.grpVitals = new System.Windows.Forms.GroupBox();
+            this.lblBloodPressure = new System.Windows.Forms.Label();
+            this.txtBloodPressure = new System.Windows.Forms.TextBox();
+            this.lblTemperature = new System.Windows.Forms.Label();
+            this.txtTemperature = new System.Windows.Forms.TextBox();
+            this.lblPulse = new System.Windows.Forms.Label();
+            this.txtPulse = new System.Windows.Forms.TextBox();
+            this.lblOxygenLevel = new System.Windows.Forms.Label();
+            this.txtOxygenLevel = new System.Windows.Forms.TextBox();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.pnlHeader.SuspendLayout();
+            this.grpPatientInfo.SuspendLayout();
+            this.grpVitals.SuspendLayout();
+            this.SuspendLayout();
+            
+            // pnlHeader
+            this.pnlHeader.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(72)))), ((int)(((byte)(153)))));
+            this.pnlHeader.Controls.Add(this.lblTitle);
+            this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlHeader.Location = new System.Drawing.Point(0, 0);
+            this.pnlHeader.Name = "pnlHeader";
+            this.pnlHeader.Size = new System.Drawing.Size(700, 60);
+            this.pnlHeader.TabIndex = 0;
+            
+            // lblTitle
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblTitle.ForeColor = System.Drawing.Color.White;
+            this.lblTitle.Location = new System.Drawing.Point(20, 18);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(300, 26);
+            this.lblTitle.TabIndex = 0;
+            this.lblTitle.Text = "Registrar Signos Vitales";
+            
+            // grpPatientInfo
+            this.grpPatientInfo.Controls.Add(this.lblPatientName);
+            this.grpPatientInfo.Controls.Add(this.txtPatientName);
+            this.grpPatientInfo.Controls.Add(this.lblPatientId);
+            this.grpPatientInfo.Controls.Add(this.txtPatientId);
+            this.grpPatientInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.grpPatientInfo.Location = new System.Drawing.Point(20, 80);
+            this.grpPatientInfo.Name = "grpPatientInfo";
+            this.grpPatientInfo.Size = new System.Drawing.Size(660, 100);
+            this.grpPatientInfo.TabIndex = 1;
+            this.grpPatientInfo.TabStop = false;
+            this.grpPatientInfo.Text = "Información del Paciente";
+            
             // lblPatientId
-            // 
-            lblPatientId.AutoSize = true;
-            lblPatientId.Location = new Point(73, 147);
-            lblPatientId.Name = "lblPatientId";
-            lblPatientId.Size = new Size(66, 15);
-            lblPatientId.TabIndex = 0;
-            lblPatientId.Text = "ID Paciente";
-            // 
+            this.lblPatientId.AutoSize = true;
+            this.lblPatientId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblPatientId.Location = new System.Drawing.Point(20, 30);
+            this.lblPatientId.Name = "lblPatientId";
+            this.lblPatientId.Size = new System.Drawing.Size(66, 15);
+            this.lblPatientId.TabIndex = 0;
+            this.lblPatientId.Text = "ID Paciente:";
+            
             // txtPatientId
-            // 
-            txtPatientId.Location = new Point(203, 143);
-            txtPatientId.Name = "txtPatientId";
-            txtPatientId.Size = new Size(300, 23);
-            txtPatientId.TabIndex = 1;
-            // 
+            this.txtPatientId.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtPatientId.Location = new System.Drawing.Point(120, 27);
+            this.txtPatientId.Name = "txtPatientId";
+            this.txtPatientId.Size = new System.Drawing.Size(300, 21);
+            this.txtPatientId.TabIndex = 1;
+            
             // lblPatientName
-            // 
-            lblPatientName.AutoSize = true;
-            lblPatientName.Location = new Point(73, 187);
-            lblPatientName.Name = "lblPatientName";
-            lblPatientName.Size = new Size(99, 15);
-            lblPatientName.TabIndex = 2;
-            lblPatientName.Text = "Nombre Paciente";
-            // 
+            this.lblPatientName.AutoSize = true;
+            this.lblPatientName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblPatientName.Location = new System.Drawing.Point(20, 65);
+            this.lblPatientName.Name = "lblPatientName";
+            this.lblPatientName.Size = new System.Drawing.Size(99, 15);
+            this.lblPatientName.TabIndex = 2;
+            this.lblPatientName.Text = "Nombre Paciente:";
+            
             // txtPatientName
-            // 
-            txtPatientName.Location = new Point(203, 183);
-            txtPatientName.Name = "txtPatientName";
-            txtPatientName.Size = new Size(300, 23);
-            txtPatientName.TabIndex = 3;
-            // 
+            this.txtPatientName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtPatientName.Location = new System.Drawing.Point(120, 62);
+            this.txtPatientName.Name = "txtPatientName";
+            this.txtPatientName.Size = new System.Drawing.Size(500, 21);
+            this.txtPatientName.TabIndex = 3;
+            
+            // grpVitals
+            this.grpVitals.Controls.Add(this.lblOxygenLevel);
+            this.grpVitals.Controls.Add(this.txtOxygenLevel);
+            this.grpVitals.Controls.Add(this.lblPulse);
+            this.grpVitals.Controls.Add(this.txtPulse);
+            this.grpVitals.Controls.Add(this.lblTemperature);
+            this.grpVitals.Controls.Add(this.txtTemperature);
+            this.grpVitals.Controls.Add(this.lblBloodPressure);
+            this.grpVitals.Controls.Add(this.txtBloodPressure);
+            this.grpVitals.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.grpVitals.Location = new System.Drawing.Point(20, 200);
+            this.grpVitals.Name = "grpVitals";
+            this.grpVitals.Size = new System.Drawing.Size(660, 200);
+            this.grpVitals.TabIndex = 2;
+            this.grpVitals.TabStop = false;
+            this.grpVitals.Text = "Signos Vitales";
+            
             // lblBloodPressure
-            // 
-            lblBloodPressure.AutoSize = true;
-            lblBloodPressure.Location = new Point(73, 227);
-            lblBloodPressure.Name = "lblBloodPressure";
-            lblBloodPressure.Size = new Size(87, 15);
-            lblBloodPressure.TabIndex = 4;
-            lblBloodPressure.Text = "Presión Arterial";
-            // 
+            this.lblBloodPressure.AutoSize = true;
+            this.lblBloodPressure.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblBloodPressure.Location = new System.Drawing.Point(20, 30);
+            this.lblBloodPressure.Name = "lblBloodPressure";
+            this.lblBloodPressure.Size = new System.Drawing.Size(120, 15);
+            this.lblBloodPressure.TabIndex = 0;
+            this.lblBloodPressure.Text = "Presión Arterial:";
+            
             // txtBloodPressure
-            // 
-            txtBloodPressure.Location = new Point(203, 223);
-            txtBloodPressure.Name = "txtBloodPressure";
-            txtBloodPressure.Size = new Size(200, 23);
-            txtBloodPressure.TabIndex = 5;
-            // 
+            this.txtBloodPressure.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtBloodPressure.Location = new System.Drawing.Point(150, 27);
+            this.txtBloodPressure.Name = "txtBloodPressure";
+            this.txtBloodPressure.Size = new System.Drawing.Size(200, 21);
+            this.txtBloodPressure.TabIndex = 1;
+            this.txtBloodPressure.PlaceholderText = "Ej: 120/80";
+            
             // lblTemperature
-            // 
-            lblTemperature.AutoSize = true;
-            lblTemperature.Location = new Point(73, 267);
-            lblTemperature.Name = "lblTemperature";
-            lblTemperature.Size = new Size(74, 15);
-            lblTemperature.TabIndex = 6;
-            lblTemperature.Text = "Temperatura";
-            // 
+            this.lblTemperature.AutoSize = true;
+            this.lblTemperature.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblTemperature.Location = new System.Drawing.Point(20, 70);
+            this.lblTemperature.Name = "lblTemperature";
+            this.lblTemperature.Size = new System.Drawing.Size(90, 15);
+            this.lblTemperature.TabIndex = 2;
+            this.lblTemperature.Text = "Temperatura (°C):";
+            
             // txtTemperature
-            // 
-            txtTemperature.Location = new Point(203, 263);
-            txtTemperature.Name = "txtTemperature";
-            txtTemperature.Size = new Size(200, 23);
-            txtTemperature.TabIndex = 7;
-            // 
+            this.txtTemperature.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtTemperature.Location = new System.Drawing.Point(150, 67);
+            this.txtTemperature.Name = "txtTemperature";
+            this.txtTemperature.Size = new System.Drawing.Size(200, 21);
+            this.txtTemperature.TabIndex = 3;
+            
             // lblPulse
-            // 
-            lblPulse.AutoSize = true;
-            lblPulse.Location = new Point(73, 307);
-            lblPulse.Name = "lblPulse";
-            lblPulse.Size = new Size(36, 15);
-            lblPulse.TabIndex = 8;
-            lblPulse.Text = "Pulso";
-            // 
+            this.lblPulse.AutoSize = true;
+            this.lblPulse.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblPulse.Location = new System.Drawing.Point(20, 110);
+            this.lblPulse.Name = "lblPulse";
+            this.lblPulse.Size = new System.Drawing.Size(50, 15);
+            this.lblPulse.TabIndex = 4;
+            this.lblPulse.Text = "Pulso:";
+            
             // txtPulse
-            // 
-            txtPulse.Location = new Point(203, 303);
-            txtPulse.Name = "txtPulse";
-            txtPulse.Size = new Size(200, 23);
-            txtPulse.TabIndex = 9;
-            // 
+            this.txtPulse.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtPulse.Location = new System.Drawing.Point(150, 107);
+            this.txtPulse.Name = "txtPulse";
+            this.txtPulse.Size = new System.Drawing.Size(200, 21);
+            this.txtPulse.TabIndex = 5;
+            
             // lblOxygenLevel
-            // 
-            lblOxygenLevel.AutoSize = true;
-            lblOxygenLevel.Location = new Point(45, 346);
-            lblOxygenLevel.Name = "lblOxygenLevel";
-            lblOxygenLevel.Size = new Size(152, 15);
-            lblOxygenLevel.TabIndex = 10;
-            lblOxygenLevel.Text = "Nivel de Oxígeno en Sangre";
-            // 
+            this.lblOxygenLevel.AutoSize = true;
+            this.lblOxygenLevel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblOxygenLevel.Location = new System.Drawing.Point(20, 150);
+            this.lblOxygenLevel.Name = "lblOxygenLevel";
+            this.lblOxygenLevel.Size = new System.Drawing.Size(160, 15);
+            this.lblOxygenLevel.TabIndex = 6;
+            this.lblOxygenLevel.Text = "Nivel de Oxígeno en Sangre (%):";
+            
             // txtOxygenLevel
-            // 
-            txtOxygenLevel.Location = new Point(203, 343);
-            txtOxygenLevel.Name = "txtOxygenLevel";
-            txtOxygenLevel.Size = new Size(200, 23);
-            txtOxygenLevel.TabIndex = 11;
-            // 
+            this.txtOxygenLevel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtOxygenLevel.Location = new System.Drawing.Point(190, 147);
+            this.txtOxygenLevel.Name = "txtOxygenLevel";
+            this.txtOxygenLevel.Size = new System.Drawing.Size(160, 21);
+            this.txtOxygenLevel.TabIndex = 7;
+            
             // btnSave
-            // 
-            btnSave.Location = new Point(203, 387);
-            btnSave.Name = "btnSave";
-            btnSave.Size = new Size(100, 30);
-            btnSave.TabIndex = 12;
-            btnSave.Text = "Guardar";
-            btnSave.UseVisualStyleBackColor = true;
-            btnSave.Click += btnSave_Click;
-            // 
+            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(72)))), ((int)(((byte)(153)))));
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnSave.ForeColor = System.Drawing.Color.White;
+            this.btnSave.Location = new System.Drawing.Point(450, 420);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(120, 40);
+            this.btnSave.TabIndex = 3;
+            this.btnSave.Text = "Guardar";
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            
             // btnCancel
-            // 
-            btnCancel.Location = new Point(313, 387);
-            btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(100, 30);
-            btnCancel.TabIndex = 13;
-            btnCancel.Text = "Cancelar";
-            btnCancel.UseVisualStyleBackColor = true;
-            btnCancel.Click += btnCancel_Click;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(174, 77);
-            label1.Name = "label1";
-            label1.Size = new Size(264, 15);
-            label1.TabIndex = 20;
-            label1.Text = "Registre los datos medicos tomados del paciente";
-            label1.Click += label1_Click;
-            // 
+            this.btnCancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(156)))), ((int)(((byte)(163)))), ((int)(((byte)(175)))));
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.btnCancel.ForeColor = System.Drawing.Color.White;
+            this.btnCancel.Location = new System.Drawing.Point(580, 420);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(120, 40);
+            this.btnCancel.TabIndex = 4;
+            this.btnCancel.Text = "Cancelar";
+            this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            
             // PatientRegisterForm
-            // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(596, 548);
-            Controls.Add(label1);
-            Controls.Add(btnCancel);
-            Controls.Add(btnSave);
-            Controls.Add(txtOxygenLevel);
-            Controls.Add(lblOxygenLevel);
-            Controls.Add(txtPulse);
-            Controls.Add(lblPulse);
-            Controls.Add(txtTemperature);
-            Controls.Add(lblTemperature);
-            Controls.Add(txtBloodPressure);
-            Controls.Add(lblBloodPressure);
-            Controls.Add(txtPatientName);
-            Controls.Add(lblPatientName);
-            Controls.Add(txtPatientId);
-            Controls.Add(lblPatientId);
-            FormBorderStyle = FormBorderStyle.FixedDialog;
-            MaximizeBox = false;
-            MinimizeBox = false;
-            Name = "PatientRegisterForm";
-            StartPosition = FormStartPosition.CenterParent;
-            Text = "Registrar Pacientes";
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(242)))), ((int)(((byte)(248)))));
+            this.ClientSize = new System.Drawing.Size(700, 480);
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.btnSave);
+            this.Controls.Add(this.grpVitals);
+            this.Controls.Add(this.grpPatientInfo);
+            this.Controls.Add(this.pnlHeader);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "PatientRegisterForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.Text = "Registrar Signos Vitales";
+            this.pnlHeader.ResumeLayout(false);
+            this.pnlHeader.PerformLayout();
+            this.grpPatientInfo.ResumeLayout(false);
+            this.grpPatientInfo.PerformLayout();
+            this.grpVitals.ResumeLayout(false);
+            this.grpVitals.PerformLayout();
+            this.ResumeLayout(false);
         }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void btnSave_Click(object sender, EventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-        private Label label1;
     }
 }

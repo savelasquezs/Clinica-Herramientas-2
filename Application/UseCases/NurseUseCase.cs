@@ -37,8 +37,17 @@ namespace Clinica_Herramientas_2.Application.UseCases
                 throw new Exception("Debe establecer una enfermera válida");
             }
 
+            // Convertir DateTime a UTC para PostgreSQL (requiere Kind=UTC)
+            DateTime performedAtUtc = performedAt.Kind == DateTimeKind.Utc 
+                ? performedAt 
+                : performedAt.ToUniversalTime();
+            
+            DateTime visitTimeUtc = visitTime.Kind == DateTimeKind.Utc 
+                ? visitTime 
+                : visitTime.ToUniversalTime();
+
             var vitalData = new VitalData(bloodPressure, temperature, pulse, oxygenLevel);
-            var nurseVisit = new NurseVisit(orderItem, testsPerformed, notes, performedAt, this.CurrentUser, vitalData, administeredMedications, visitTime, patient);
+            var nurseVisit = new NurseVisit(orderItem, testsPerformed, notes, performedAtUtc, this.CurrentUser, vitalData, administeredMedications, visitTimeUtc, patient);
 
             createNurseVisit.Create(nurseVisit);
         }
@@ -50,7 +59,12 @@ namespace Clinica_Herramientas_2.Application.UseCases
                 throw new Exception("Debe establecer una enfermera válida");
             }
 
-            var administeredMedication = new AdministeredMedication(orderItem, testsPerformed, notes, performedAt, medication, dose, administrationRoute);
+            // Convertir DateTime a UTC para PostgreSQL (requiere Kind=UTC)
+            DateTime performedAtUtc = performedAt.Kind == DateTimeKind.Utc 
+                ? performedAt 
+                : performedAt.ToUniversalTime();
+
+            var administeredMedication = new AdministeredMedication(orderItem, testsPerformed, notes, performedAtUtc, medication, dose, administrationRoute);
             // El AdministeredMedication se puede agregar a la lista de medicamentos administrados
         }
 

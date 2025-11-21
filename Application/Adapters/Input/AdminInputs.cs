@@ -26,10 +26,8 @@ namespace Clinica_Herramientas_2.Application.Adapters.Input
         
         public void CreatePatient(string fullname, string dni, string email, string phonenumber, DateOnly birthdate, string address, Gender gender, string emergencyFirstName, string emergencyLastName, string emergencyRelationship, string emergencyPhone, string insuranceCompanyName, string insurancePolicyNumber, bool insuranceIsActive, DateTime insuranceExpirationDate)
         {
-            // Usar builder para crear paciente (él maneja internamente EmergencyContact y HealthInsurance)
-            var patient = patientBuilder.Create(fullname, dni, email, phonenumber, birthdate, address, gender, emergencyFirstName, emergencyLastName, emergencyRelationship, emergencyPhone, insuranceCompanyName, insurancePolicyNumber, insuranceIsActive, insuranceExpirationDate);
-            
-            // Llamar a adminUseCase.CreateNewPatient()
+            // Llamar directamente a adminUseCase.CreateNewPatient() que crea el paciente internamente
+            // No crear el paciente aquí para evitar tracking duplicado
             adminUseCase.CreateNewPatient(fullname, dni, email, phonenumber, birthdate, address, gender, emergencyFirstName, emergencyLastName, emergencyRelationship, emergencyPhone, insuranceCompanyName, insurancePolicyNumber, insuranceIsActive, insuranceExpirationDate);
         }
         

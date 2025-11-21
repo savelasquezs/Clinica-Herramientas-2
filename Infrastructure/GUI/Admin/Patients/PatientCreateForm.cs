@@ -66,6 +66,22 @@ namespace Clinica_Herramientas_2.Infrastructure.GUI.Admin.Patients
                     return;
                 }
 
+                // Validar DNI (debe ser numérico y tener entre 1 y 10 dígitos)
+                var dniTrimmed = txtDni.Text.Trim();
+                if (string.IsNullOrWhiteSpace(dniTrimmed) || !dniTrimmed.All(char.IsDigit))
+                {
+                    MessageBox.Show("El DNI debe contener solo números", "Error de validación", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                
+                if (dniTrimmed.Length > 10)
+                {
+                    MessageBox.Show("El DNI no puede tener más de 10 dígitos", "Error de validación", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                
                 // Validar teléfono (10 dígitos)
                 if (txtPhonenumber.Text.Length != 10 || !txtPhonenumber.Text.All(char.IsDigit))
                 {
@@ -135,7 +151,24 @@ namespace Clinica_Herramientas_2.Infrastructure.GUI.Admin.Patients
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error al crear paciente: {ex.Message}", "Error", 
+                // Mostrar mensaje de error más claro y específico
+                string errorMessage = ex.Message;
+                
+                // Mejorar mensajes de error comunes
+                if (errorMessage.Contains("ya existe") || errorMessage.Contains("already exists"))
+                {
+                    errorMessage = $"El paciente con DNI '{txtDni.Text.Trim()}' ya existe en el sistema. Por favor, verifique el DNI e intente nuevamente.";
+                }
+                else if (errorMessage.Contains("siendo rastreada") || errorMessage.Contains("being tracked"))
+                {
+                    errorMessage = "Error técnico al guardar el paciente. Por favor, intente nuevamente.";
+                }
+                else if (errorMessage.Contains("Solo el administrador"))
+                {
+                    errorMessage = "No tiene permisos para crear pacientes. Solo los administradores pueden realizar esta acción.";
+                }
+                
+                MessageBox.Show($"Error al crear paciente: {errorMessage}", "Error", 
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
